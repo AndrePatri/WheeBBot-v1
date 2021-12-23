@@ -1,0 +1,48 @@
+solver_options:
+    regularization: 1e-3
+    back_end: "qpoases"
+
+stack:
+    - ["ContactCoherence"]
+    - ["HipHeight"]
+
+constraints: ["LegJointPositionLimits", "LegJointVelocityLimits"]
+
+HipHeight:
+    type: "Cartesian"
+    name: "hip_height"
+    distal_link: "LF_HIP"
+    base_link: "test_rig"
+    active: true
+    lambda: 1
+    weight: 10.0
+    indices: [0, 1, 2]
+    disabled_joints: []
+
+ContactCoherence:
+    type: "Cartesian"
+    name: "contact_coherence"
+    distal_link: "LF_FOOT"
+    # base_link: "test_rig"
+    active: true
+    lambda: 0.1
+    weight: 10.0
+    indices: [0, 1, 2]
+    disabled_joints: []
+
+LegJointPositionLimits:
+    type: "JointLimits"
+    bound_scaling: 1.0
+    limits:
+        # LF_HFE: [-1.57, 1.57]
+        # LF_KFE: [-1.57, 1.57]  
+
+LegJointVelocityLimits:
+    type: "VelocityLimits"
+    bound_scaling: 1 
+    limits:
+        # LF_HFE: 1.57
+        # LF_KFE: 1.57
+
+
+

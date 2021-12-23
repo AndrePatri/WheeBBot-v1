@@ -1,0 +1,21 @@
+<launch>
+
+    <arg name="prefix" default=""/>
+    <arg name="gui" default="true"/>
+
+    <param name="robot_description"
+        textfile="$(find awesome_leg_pholus)/description/urdf/awesome_leg_complete.urdf"/>
+    
+    <node if="$(arg gui)"
+            type="rviz"
+            name="rviz"
+            pkg="rviz"
+            args="-d $(find awesome_leg_pholus)/rviz/rviz_standalone.rviz"/>
+            output="screen"/>
+    
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+    <param name="publish_default_efforts" value="True"/>
+    </node>
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />  <!-- uncomment to use RVIZ as standalone -->
+
+</launch>

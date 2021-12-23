@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<robot name="wheebbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- ################### MATERIAL DEFINITIONS ################### -->
+Ì
+    <material name="awesome_leg_material">
+        <color rgba="0.7 0.7 0.7 1.0" />
+    </material>
+    <material name="test_rig_material">
+        <color rgba="0.647 0.655 0.678 1.0" />
+    </material>
+
+    <!-- ################### LINKS ################### -->
+  
+    <link name="LF_HIP">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package:// awesome_leg_description/meshes/anymal_hip_l.dae" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="awesome_leg_material" />
+        </visual>
+        <collision>
+            <!-- Protector -->
+            <origin rpy="1.57079632679 0 0" xyz="0.0635 -0.009 0.0" />
+            <geometry>
+                <cylinder length="0.1" radius="0.08" />
+            </geometry>
+        </collision>
+        <collision>
+            <!-- Heatfins -->
+            <origin rpy="1.57079632679 0 0" xyz="0.0635 -0.074 0.0" />
+            <geometry>
+                <cylinder length="0.03" radius="0.045" />
+            </geometry>
+        </collision>
+        
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.064516258147 -0.003787101702 -0.000152184388" />
+            <mass value="1.42462064" />
+            <inertia ixx="0.00243023349564" ixy="-1.53023971e-05" ixz="-2.1819095354e-05" iyy="0.00230257239103" iyz="2.6473021273e-05" izz="0.0019806759227" />
+        </inertial>
+
+    </link>
+
+    <link name="LF_THIGH">
+        <visual>
+            <origin rpy="0 0 0.0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package:// awesome_leg_description/meshes/anymal_thigh_l.dae" scale="0.001 0.001     0.001" />
+            </geometry>
+            <material name="awesome_leg_material" />
+        </visual>
+        <collision>
+            <!-- thigh with heat fins -->
+            <origin rpy="0.145 0 0" xyz="0 0.035 -0.125" />
+            <geometry>
+                <box size="0.08 0.04 0.25" />
+            </geometry>
+        </collision>
+        <collision>
+            <!-- KFE actuator -->
+            <origin rpy="1.57079632679 0 0" xyz="0.0 0.069 -0.25" />
+            <geometry>
+                <cylinder length="0.12" radius="0.06" />
+            </geometry>
+        </collision>
+        <collision>
+            <!-- upper protector -->
+            <origin rpy="1.71579632679 0 0" xyz="0 -0.005 0" />
+            <geometry>
+                <cylinder length="0.12" radius="0.066" />
+            </geometry>
+        </collision>
+        
+        <inertial>
+            <origin rpy="0 0 0" xyz="-0.003897968082 0.054226618537 -0.214583373795" />
+            <mass value="1.634976467" />
+            <inertia ixx="0.0120367944369" ixy="6.762065206e-05" ixz="0.000287806340448" iyy="0.0120643637939" iyz="-0.00140610131218" izz="0.00249422574881" />
+        </inertial>
+
+    </link>
+
+    <link name="LF_SHANK">
+        <visual>
+            <origin rpy="0 0 0.0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package:// awesome_leg_description/meshes/anymal_shank_l.dae" scale="0.001 0.001     0.001" />
+            </geometry>
+            <material name="awesome_leg_material" />
+        </visual>
+        <collision>
+            <origin rpy="0 1.57079632679 0" xyz="0.065 -0.015 0.01" />
+            <geometry>
+                <box size="0.08 0.07 0.13" />
+            </geometry>
+        </collision>
+        
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.030816858139 -0.004617229294 0.000893125713" />
+            <mass value="0.207204302" />
+            <inertia ixx="0.0002104880248" ixy="-5.6750980345e-05" ixz="1.0127699391e-05" iyy="0.000676270210023" iyz="-8.22869024e-07" izz="0.000545032674924" />
+        </inertial>
+
+    </link>
+    
+    <link name="LF_ADAPTER">
+        <visual>
+            <origin rpy="0 0 0.0" xyz="0 0 0.032" />
+            <geometry>
+                <mesh filename="package:// awesome_leg_description/meshes/anymal_foot.dae" scale="0.001 0.001     0.001" />
+            </geometry>
+            <material name="awesome_leg_material" />
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 -0.160625" />
+            <geometry>
+                <cylinder length="0.32125" radius="0.015" />
+            </geometry>
+            <material name="awesome_leg_material" />
+        </collision>
+        
+        <inertial>
+            <origin rpy="0 0 0" xyz="-8.66e-10 -1.472e-09 -0.244345749188" />
+            <mass value="0.140170767" />
+            <inertia ixx="0.00159938741862" ixy="-9.32e-13" ixz="1.039e-11" iyy="0.00159938741932" iyz="1.7563e-11" izz="5.4423177329e-05" />
+        </inertial>
+
+    </link>
+
+    <link name="LF_FOOT">
+        <collision>
+            <origin xyz="0 0 0.02325" />
+            <geometry>
+                <sphere radius="0.031" />
+            </geometry>
+        </collision>
+        
+        <inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+
+    <!-- ################### JOINTS ################### -->
+   
+    <!-- Thigh joint -->
+    <joint name="LF_HFE" type="revolute">
+        <parent link="LF_HIP" />
+        <child link="LF_THIGH" />
+        <origin xyz="0.0635 0.041 0.0" />
+        <axis xyz="0 1 0"/>
+        <limit command_effort="40" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15.0" />
+        <dynamics damping="0.0" friction="0.0" />
+    </joint>
+
+    <!-- Shank joint -->
+    <joint name="LF_KFE" type="revolute">
+        <parent link="LF_THIGH" />
+        <child link="LF_SHANK" />
+        <origin xyz="0.0 0.109 -0.25" />
+        <axis xyz="0 1 0" />
+        <limit command_effort="40" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15.0" />
+        <dynamics damping="0.0" friction="0.0" />
+    </joint>
+
+    <!-- Shank to Adapter joint -->
+    <joint name="LF_SHANK_TO_ADAPTER" type="fixed">
+        <parent link="LF_SHANK" />
+        <child link="LF_ADAPTER" />
+        <origin rpy="0.0 0.0 0.0" xyz="0.1 -0.02 0.0" />
+    </joint>
+
+    <!-- Adapter to Foot joint -->
+    <joint name="LF_ADAPTER_TO_FOOT" type="fixed">
+        <parent link="LF_ADAPTER" />
+        <child link="LF_FOOT" />
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.32125" />
+    </joint>
+    
+    <!-- ################### TRANSMISSION ELEMENTS ################### -->
+
+   
+    <transmission name="trans_LF_HFE">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="LF_HFE">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="LF_HFE_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_LF_KFE">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="LF_KFE">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="LF_KFE_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <!-- ################### MODEL PLUGINS ################### -->
+
+    <gazebo> <!-- Gazebo-ROS control interface -->
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"> 
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
+
+    <!-- xbot2 joint device driver-->
+    <gazebo>  
+        <plugin name='xbot2_gz_joint_server' filename='libxbot2_gz_joint_server.so'> 
+            <pid>
+
+                <gain name="null_mode"  p="0"  d="0"/>
+                <gain name="small_mot"  p="250"  d="5"/>
+                <gain name="medium_mot" p="1000" d="10"/>
+                <gain name="big_mot"    p="3000" d="10"/>
+                <gain name="wheel_mot"  p="0" d="30"/>
+
+                <gain name="test_rig_LF_HIP" profile="null_mode"/>
+                <gain name="LF_HFE" profile="medium_mot"/>
+                <gain name="LF_KFE" profile="medium_mot"/>
+            </pid>
+        </plugin>
+    </gazebo>
+
+    <gazebo> <!-- Gazebo-ROS control interface -->
+        <plugin name="xbot2_ft_driver" filename="libxbot2_gz_ft_server.so"/>
+    </gazebo>
+
+    <!-- <gazebo>
+        <plugin name="xbot2_imu_driver" filename="libxbot2_gz_imu_server.so"/>
+    </gazebo> -->
+
+    
+
+    <!-- ################### OTHER STUFF ################### -->
+
+    <gazebo reference="LF_FOOT"> <!-- Foot contact parameters -->
+        <kp>1000000.0</kp>
+        <kd>100.0</kd>
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+    </gazebo>
+
+</robot>
