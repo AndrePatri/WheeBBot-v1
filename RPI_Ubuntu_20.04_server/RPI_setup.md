@@ -192,6 +192,9 @@ Alternatively, you can also use
 
 It is possible to use cantools to generate the .dbc file and C code for coding/packaging/unpackaging/decoding messages from a given python database file (.dbc)
 
+To check possible message conflict on the CAN buses
+`canbusload -rbt can0@1000000 can1@1000000`
+
 ---
 
 ## ODrive ROS drivers (not used, they don't interface with socketcan)

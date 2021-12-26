@@ -47,13 +47,11 @@
 
 - [x] Possibly modify ODrive firmware to also return the measured i_d current on both axes
 
-- [ ] Modify ODrive firmware so that the position, velocity and torque commands have higher ID priority than the heartbeat and the feedback from the axis (simply swap cmd ids in can_simple.hpp and modify them in create_can_dbc.py)
-
 - [ ] Flash firmware on the ODrive and test if it works properly (double check if the tup.config file has the correct board version set)
 
 - [ ] Write a node which reads IMU data on can1 bus and wheel encoders data on can0 and publishes it (with possible post-processing) to a WheeBBot_state topic. Initially employ python scripts and the .dbc files. In a second phase, explore the possibility of using more efficient c++ code which interfaces with SocketCAN
 
-- [ ] Write a GUI for visualizing data from the sensors and possibly also interacting with the robot
+- [ ] Write a GUI for visualizing data from the sensors and possibly also interacting with the robot. Options: Kivy, TkInter, PyQT or directly use rqt
 
 - [ ] See if it is possible to include current feedback into the sent messages in the ODrive
 
