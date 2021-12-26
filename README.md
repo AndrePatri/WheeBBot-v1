@@ -37,13 +37,19 @@
 
 ## ToDo
 
-- [ ] Perform static pitch equilibrium angle using the IMU (Edoardo's way)
+- [ ] Obtain an URDF representation of the robot
+
+- [ ] Perform the pitch equilibrium angle calibration using the IMU
 
 - [ ] Write the full floating base model of the system (possibly using Matlab's symbolic language), to be used by the controller. Also check if using RBDL or similar can be viable
 
-- [ ] Test torque commands and encoder feedback through CAN to ODrive on can0 
+- [x] Test torque commands and encoder feedback to/from ODrive through CAN  
 
-- [ ] Possibly modify ODrive firmware to also return the measured i_d current on both axes
+- [x] Possibly modify ODrive firmware to also return the measured i_d current on both axes
+
+- [ ] Modify ODrive firmware so that the position, velocity and torque commands have higher ID priority than the heartbeat and the feedback from the axis (simply swap cmd ids in can_simple.hpp and modify them in create_can_dbc.py)
+
+- [ ] Flash firmware on the ODrive and test if it works properly (double check if the tup.config file has the correct board version set)
 
 - [ ] Write a node which reads IMU data on can1 bus and wheel encoders data on can0 and publishes it (with possible post-processing) to a WheeBBot_state topic. Initially employ python scripts and the .dbc files. In a second phase, explore the possibility of using more efficient c++ code which interfaces with SocketCAN
 
