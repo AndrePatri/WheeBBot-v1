@@ -1,8 +1,0 @@
-prefix=/home/andreap/hhcm_ws/devel
-
-Name: awesome_leg
-Description: Description of awesome_leg
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
