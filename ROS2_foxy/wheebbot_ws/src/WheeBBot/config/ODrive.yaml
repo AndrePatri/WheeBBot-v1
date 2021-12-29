@@ -1,68 +1,66 @@
-odrive:
-
- config:
-  brake_resistance: 0.0
-  dc_max_negative_current: -1
-  max_regen_current: 100.0
-  
- axis0:
- 
-  config:
-   startup_encoder_index_search: True
-   startup_closed_loop_control: True
-   can:
-    node_id: 0
-    encoder_rate_ms: 1
-    heartbeat_rate_ms: 1
-  motor:
-   config:
-    current_lim: 10.0
-    pole_pairs: 7
-    torque_constant: 0.03062963
-    calibration_current: 10.0 
-    resistance_calib_max_voltage: 2.0 
-    pre_calibrated: True
-  encoder:
-   config:
-    cpr: 8192
-    mode: ENCODER_MODE_INCREMENTAL
-    calib_range: 0.05
-    pre_calibrated: True
-  controller:
-   config:
-    anticogging:
-     anticogging_enabled: True
-    input_mode: 1
-    control_mode: 3
-    vel_limit: 5.0
-    
- axis1:
- 
-  config:
-   startup_encoder_index_search: True
-   startup_closed_loop_control: True
-   can:
-    node_id: 0
-    encoder_rate_ms: 1
-    heartbeat_rate_ms: 1
-  motor:
-   config:
-    current_lim: 10.0
-    pole_pairs: 7
-    torque_constant: 0.03062963
-    calibration_current: 10.0 
-    resistance_calib_max_voltage: 2.0 
-    pre_calibrated: True
-  encoder:
-   config:
-    cpr: 8192
-    mode: ENCODER_MODE_INCREMENTAL
-    calib_range: 0.05
-    pre_calibrated: True
-  controller:
-   config:
-    anticogging:
-      anticogging_enabled: True
-    input_mode: 1
-    control_mode: 3
-    vel_limit: 5.0
+/**:
+  ros__parameters:
+    odrive:
+      config:
+       brake_resistance: 0.0
+       dc_max_negative_current: -1
+       max_regen_current: 100.0
+      axis0:
+       config:
+        startup_encoder_index_search: True
+        startup_closed_loop_control: True
+        can:
+         node_id: 0
+         encoder_rate_ms: 1
+         heartbeat_rate_ms: 1
+       motor:
+        config:
+         current_lim: 10.0
+         pole_pairs: 7
+         torque_constant: 0.03062963
+         calibration_current: 10.0 
+         resistance_calib_max_voltage: 2.0 
+         pre_calibrated: True
+       encoder:
+        config:
+         cpr: 8192
+         mode: ENCODER_MODE_INCREMENTAL
+         calib_range: 0.05
+         pre_calibrated: True
+       controller:
+        config:
+         anticogging:
+          anticogging_enabled: True
+         input_mode: 1
+         control_mode: 3
+         vel_limit: 5.0    
+      axis1:
+       config:
+        startup_encoder_index_search: True
+        startup_closed_loop_control: True
+        can:
+         node_id: 0
+         encoder_rate_ms: 1
+         heartbeat_rate_ms: 1
+       motor:
+        config:
+         current_lim: 10.0
+         pole_pairs: 7
+         torque_constant: 0.03062963
+         calibration_current: 10.0 
+         resistance_calib_max_voltage: 2.0 
+         pre_calibrated: True
+       encoder:
+        config:
+         cpr: 8192
+         mode: ENCODER_MODE_INCREMENTAL
+         calib_range: 0.05
+         pre_calibrated: True
+       controller:
+        config:
+         anticogging:
+           anticogging_enabled: True
+         input_mode: 1
+         control_mode: 3
+         vel_limit: 5.0
+     
