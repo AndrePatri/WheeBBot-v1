@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.1.3)
 project(wheebbot)
 
-find_package(catkin REQUIRED COMPONENTS roscpp rospy urdf sensor_msgs xbot_msgs)
+find_package(ament_cmake REQUIRED roscpp rospy urdf sensor_msgs xbot_msgs)
 
 catkin_package()
 

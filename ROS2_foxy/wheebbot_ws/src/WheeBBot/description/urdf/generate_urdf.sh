@@ -1,3 +1,3 @@
 #!/bin/bash
 
-xacro wheebbot.xacro > wheebbot.urdf 
+xacro --inorder wheebbot.urdf.xacro > whebbot.urdf  

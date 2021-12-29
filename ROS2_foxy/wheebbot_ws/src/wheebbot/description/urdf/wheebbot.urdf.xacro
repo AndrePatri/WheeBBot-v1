@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<robot name="wheebbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- Included URDF/XACRO Files -->
+  <xacro:include filename="$(find wheebbot)/description/urdf/materials.urdf.xacro" />
+
+</robot>
