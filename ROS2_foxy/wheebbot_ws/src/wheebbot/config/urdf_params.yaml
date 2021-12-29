@@ -1,0 +1,25 @@
+wheebbot:
+
+ pendulum_mass: 5.0
+ pendulum_length: 0.3
+ pendulum_CoM_pitch_offset: 0.0
+ 
+ wheel_mass: 0.6
+ wheel_radius: 0.06
+ wheel_thickness: 0.02
+ wheels_interax: 0.3
+ wheel_damping: 0.0
+ 
+ box_lx: 0.0
+ box_ly: 0.0 
+ box_lz: 0.0
+ box_visual_offset_x: 0.0
+ box_visual_offset_y: 0.0
+ box_visual_offset_z: 0.0
+ box_visual_offset_roll: 0.0
+ box_visual_offset_pitch: 0.0
+ box_visual_offset_yaw: 0.0
+ 
+ 
+ leg_length: 0.30 
+ 

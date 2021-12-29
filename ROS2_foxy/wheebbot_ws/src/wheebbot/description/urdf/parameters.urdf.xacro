@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot name="wheebbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="pendulum_mass" value="5.0"/>  <!-- [Kg] -->
+  <xacro:property name="pendulum_length" value="5.0"/>  <!-- [m] -->
+  <xacro:property name="pendulum_CoM_pitch_offset" value="0.0"/>  <!-- [rad] -->
+  <xacro:property name="wheel_mass" value="0.6"/>  <!-- [Kg] -->
+  <xacro:property name="wheel_radius" value="0.06"/>  <!-- [m] -->
+  <xacro:property name="wheels_interax" value="0.4"/>  <!-- [m] -->
+
+</robot>
