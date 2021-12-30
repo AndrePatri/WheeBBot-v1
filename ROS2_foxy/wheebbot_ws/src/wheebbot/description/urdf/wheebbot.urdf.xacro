@@ -10,7 +10,7 @@
   <!-- Including the materials file -->
   <xacro:include filename="$(find wheebbot)/description/urdf/materials.urdf.xacro" />
 
-  <!-- Including the gazebo file -->
+  <!-- Including the gazebo related stuff -->
   <xacro:include filename="$(find wheebbot)/description/urdf/wheebbot.gazebo.xacro" />
 
   <link name="base_link">

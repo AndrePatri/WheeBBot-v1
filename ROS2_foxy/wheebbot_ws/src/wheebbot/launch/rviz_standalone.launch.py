@@ -9,6 +9,9 @@ from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
+
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+
     package_share_path = get_package_share_path('wheebbot')
     default_model_path = package_share_path/'description/urdf/wheebbot.urdf.xacro'
     default_rviz_config_path = package_share_path/'rviz/wheebbot.rviz'
@@ -21,10 +24,14 @@ def generate_launch_description():
     robot_description = ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),
                                        value_type=str)
 
+    is_sim_time= DeclareLaunchArgument(name='use_sim_time',
+            default_value='false',
+            description='Use simulation (Gazebo) clock if true')
+
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        parameters=[{'robot_description': robot_description}]
+        parameters=[{'use_sim_time': use_sim_time,'robot_description': robot_description}]
     )
 
     rviz_node = Node(
@@ -39,5 +46,6 @@ def generate_launch_description():
         model_arg,
         rviz_arg,
         robot_state_publisher_node,
+        is_sim_time,
         rviz_node
     ])
