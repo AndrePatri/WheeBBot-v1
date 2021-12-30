@@ -30,4 +30,6 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+install(DIRECTORY launch description config rviz src worlds DESTINATION share/${PROJECT_NAME}) # installing diretories so that ros2 can see them
+
 ament_package()

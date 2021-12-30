@@ -1,18 +1,20 @@
 wheebbot:
 
  pendulum_mass: 5.0
- pendulum_length: 0.3
+ pendulum_length: 0.20
+ pendulum_width: 0.1
+ pendulum_depth: 0.1
  pendulum_CoM_pitch_offset: 0.0
  
  wheel_mass: 0.6
  wheel_radius: 0.06
  wheel_thickness: 0.02
- wheels_interax: 0.3
+ wheels_interax: 0.28
  wheel_damping: 0.0
  
- box_lx: 0.0
- box_ly: 0.0 
- box_lz: 0.0
+ box_lx: 0.16
+ box_ly: 0.21
+ box_lz: 0.16
  box_visual_offset_x: 0.0
  box_visual_offset_y: 0.0
  box_visual_offset_z: 0.0
@@ -20,6 +22,21 @@ wheebbot:
  box_visual_offset_pitch: 0.0
  box_visual_offset_yaw: 0.0
  
+ leg_length: 0.27
+ leg_extrusion_l_edge: 0.02
+ leg_extrusion_l_z: 0.25
+ leg_pos_wrt_box_back: 0.076
+
+ fan_edge_length: 0.120
+ fan_vert_footprint: 0.0366
  
- leg_length: 0.30 
+ door_handle_tot_height: 0.037
+ door_handle_height2: 0.015
+ door_handle_tot_lenght: 0.105
+ door_handle_lenght2: 0.075
+ door_handle_width: 0.02
+
+ motor_case_l_edge: 0.056
+ motor_case_extension: 0.075
+
  
