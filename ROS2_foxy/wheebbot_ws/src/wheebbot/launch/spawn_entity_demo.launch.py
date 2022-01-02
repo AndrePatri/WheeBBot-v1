@@ -12,33 +12,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Launch Gazebo server and client with command line arguments."""
+"""
+Demo for spawn_entity.
+
+Launches Gazebo and spawns a model
+"""
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
 from launch.actions import IncludeLaunchDescription
-from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration
 from launch.substitutions import ThisLaunchFileDir
+from launch_ros.actions import Node
 
 
 def generate_launch_description():
+    gazebo = IncludeLaunchDescription(
+                PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/gazebo.launch.py']),
+             )
+
+    # GAZEBO_MODEL_PATH has to be correctly set for Gazebo to be able to find the model
+    spawn_entity = Node(package='gazebo_ros', node_executable='spawn_entity.py',
+                        arguments=['-entity', 'demo', '-database', 'double_pendulum_with_base'],
+                        output='screen')
 
     return LaunchDescription([
-        DeclareLaunchArgument('gui', default_value='true',
-                              description='Set to "false" to run headless.'),
+        gazebo,
 
-        DeclareLaunchArgument('server', default_value='true',
-                              description='Set to "false" not to run gzserver.'),
-
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/gzserver.launch.py']),
-            condition=IfCondition(LaunchConfiguration('server'))
-        ),
-
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/gzclient.launch.py']),
-            condition=IfCondition(LaunchConfiguration('gui'))
-        ),
+        spawn_entity,
     ])

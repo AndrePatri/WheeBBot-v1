@@ -53,7 +53,7 @@
 
 - [ ] Write a node which reads IMU data on can1 bus and wheel encoders data on can0 and publishes it (with possible post-processing) to a WheeBBot_state topic. Initially employ python scripts and the .dbc files. In a second phase, explore the possibility of using more efficient c++ code which interfaces with SocketCAN
 
-- [ ] Write a GUI for visualizing data from the sensors and possibly also interacting with the robot. Options: Kivy, TkInter, PyQT or directly use rqt
+- [ ] Setup a GUI for interacting with the robot using RQt
 
 - [ ] Setup a controller (possibly a service) node, which reads the full state, the output references and publishes the desired control inputs. This node should hold the controller script to be tested on the robot and should be written in a modular way, in a way that different control inputs can be integrated easily. This node could also be deployed on the host pc so that the RPI is lifted from the computational burden. 
 

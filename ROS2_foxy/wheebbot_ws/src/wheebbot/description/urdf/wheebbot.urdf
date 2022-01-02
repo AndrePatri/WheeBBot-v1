@@ -38,16 +38,12 @@
       <joint_name>right_wheel_joint</joint_name>
     </plugin>
   </gazebo>
-  <!-- Link1 -->
-  <gazebo reference="link1">
-    <material>Gazebo/Orange</material>
-  </gazebo>
-  <!-- Link2 -->
+  <!-- right wheel -->
   <gazebo reference="right_wheel">
     <mu1>0.5</mu1>
     <mu2>0.5</mu2>
   </gazebo>
-  <!-- Link3 -->
+  <!-- left wheel -->
   <gazebo reference="left_wheel">
     <mu1>0.5</mu1>
     <mu2>0.5</mu2>

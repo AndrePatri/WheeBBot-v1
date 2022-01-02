@@ -2,7 +2,7 @@ from ament_index_python.packages import get_package_share_path
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch.conditions import IfCondition, UnlessCondition
+
 from launch.substitutions import Command, LaunchConfiguration
 
 from launch_ros.actions import Node
@@ -20,13 +20,13 @@ def generate_launch_description():
                                       description='Absolute path to robot urdf file')
     rviz_arg = DeclareLaunchArgument(name='rvizconfig', default_value=str(default_rviz_config_path),
                                      description='Absolute path to rviz config file')
-
-    robot_description = ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),
-                                       value_type=str)
-
-    is_sim_time= DeclareLaunchArgument(name='use_sim_time',
+    is_sim_time_arg= DeclareLaunchArgument(name='use_sim_time',
             default_value='false',
             description='Use simulation (Gazebo) clock if true')
+
+    robot_description = ParameterValue(Command(['xacro', LaunchConfiguration('model')]),
+                                       value_type=str)
+                                    
 
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
@@ -45,7 +45,7 @@ def generate_launch_description():
     return LaunchDescription([
         model_arg,
         rviz_arg,
+        is_sim_time_arg,
         robot_state_publisher_node,
-        is_sim_time,
         rviz_node
     ])
