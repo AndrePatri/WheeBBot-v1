@@ -13,9 +13,10 @@
   <exec_depend>ros2launch</exec_depend> <!-- helps make sure that the ros2 launch command is available after building your package. It also ensures that all launch file formats are recognized-->
   <exec_depend>joint_state_publisher</exec_depend>
   <exec_depend>joint_state_publisher_gui</exec_depend>
-  <exec_depend>robot_state_publisher</exec_depend>
-  <exec_depend>rviz2</exec_depend>
-  <exec_depend>xacro</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend> 
+  <exec_depend>rviz2</exec_depend> <!-- rviz2 for visualizing the robot-->
+  <exec_depend>xacro</exec_depend> <!-- for handling xacro-->
+  <exec_depend>joy</exec_depend> <!-- joystick driver package-->
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

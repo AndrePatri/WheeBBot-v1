@@ -160,7 +160,7 @@
   </link>
 
   <joint name="floating_base_joint" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 ${(box_lz/2+leg_length+motor_case_l_edge/2+wheel_radius)}" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="body"/>
   </joint>
