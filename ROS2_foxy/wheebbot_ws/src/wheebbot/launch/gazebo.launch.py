@@ -25,20 +25,46 @@ from launch.substitutions import ThisLaunchFileDir
 
 def generate_launch_description():
 
-    return LaunchDescription([
-        DeclareLaunchArgument('gui', default_value='true',
-                              description='Set to "false" to run headless.'),
+    is_gui_arg=DeclareLaunchArgument('gui', default_value='true',
+                                description='Set to "false" to run headless.')
+    is_server_arg=DeclareLaunchArgument('server', default_value='true',
+                                description='Set to "false" not to run gzserver.')
+    is_gzserver_verbose_arg=DeclareLaunchArgument('gzserver_v', default_value='true',
+                                description='Set to "true" to verbose the output.')                         
+    is_gzclient_verbose_arg=DeclareLaunchArgument('gzclient_v', default_value='true',
+                                description='Set to "true" to verbose the output.')
+    world_arg=DeclareLaunchArgument('world', default_value='wheebbot.world',
+                                description='World to be loaded (its location needs to be in GAZEBO_RESOURCE_PATH)') 
+    is_paused_arg=DeclareLaunchArgument('paused', default_value='false',
+                                description='Set to "false" to avoid starting from a paused simulation')                             
+    physics_type_arg=DeclareLaunchArgument('physics', default_value='ode',
+                                description='Physics engine. Allowed types: ode|bullet|dart|simbody ') 
 
-        DeclareLaunchArgument('server', default_value='true',
-                              description='Set to "false" not to run gzserver.'),
-
-        IncludeLaunchDescription(
+    gzclient_node=IncludeLaunchDescription(
             PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/gzserver.launch.py']),
-            condition=IfCondition(LaunchConfiguration('server'))
-        ),
-
-        IncludeLaunchDescription(
+            condition=IfCondition(LaunchConfiguration('server')),
+            launch_arguments={
+                'verbose': LaunchConfiguration('gzserver_v'),
+                'world': LaunchConfiguration('world'),
+                'pause': LaunchConfiguration('paused'),
+                'physics': LaunchConfiguration('physics') 
+            }.items()
+        )
+    gzserver_node=IncludeLaunchDescription(
             PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/gzclient.launch.py']),
-            condition=IfCondition(LaunchConfiguration('gui'))
-        ),
+            condition=IfCondition(LaunchConfiguration('gui')),
+            launch_arguments={
+                'verbose': LaunchConfiguration('gzclient_v')
+            }.items()
+        )                      
+    return LaunchDescription([
+        is_gui_arg,
+        is_server_arg,
+        is_gzserver_verbose_arg,
+        is_gzclient_verbose_arg,
+        world_arg,
+        is_paused_arg,
+        physics_type_arg,
+        gzclient_node,
+        gzserver_node,
     ])

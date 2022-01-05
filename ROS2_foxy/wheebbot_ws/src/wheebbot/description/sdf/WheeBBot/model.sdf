@@ -69,7 +69,7 @@
             <pose>0 0 0 0 0 1.5707963267948966  </pose>
             <geometry>
               <mesh>
-                <uri>model://WheeBBot/meshes/wheel_full.dae</uri>
+                <uri>model://WheeBBot/meshes/wheel_black.dae</uri>
               </mesh>
            </geometry>
           </visual>
@@ -133,7 +133,7 @@
             <pose>0 0 0 0 0 -1.5707963267948966  </pose>
             <geometry>
               <mesh>
-                <uri>model://WheeBBot/meshes/wheel_full.dae</uri>
+                <uri>model://WheeBBot/meshes/wheel_black.dae</uri>
               </mesh>
            </geometry>
           </visual>

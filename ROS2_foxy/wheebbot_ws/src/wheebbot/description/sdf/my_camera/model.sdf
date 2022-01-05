@@ -16,9 +16,9 @@
         </visual> -->
         <sensor name='my_camera_sensor' type='camera'>
           <camera>
-            <save enabled="true">
-              <path>/home/andreap/IIT_CRIS_HHCM/ROS/ROS1_noetic/ros_ws1/src/awesome_leg_gazebo/media/video_frames/</path>
-            </save>
+            <!-- <save enabled="true">
+              <path> package://media/video_frames/ </path>
+            </save> -->
             <horizontal_fov>1</horizontal_fov>
             <image>
               <width>1920</width>

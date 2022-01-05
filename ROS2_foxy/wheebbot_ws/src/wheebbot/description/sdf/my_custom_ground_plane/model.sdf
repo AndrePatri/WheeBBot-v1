@@ -12,20 +12,16 @@
           </plane>
         </geometry>
 
-        <surface>
+        <!-- <surface>
             
           <contact>
-             <!--<collide_bitmask>0xffff</collide_bitmask>-->
              <ode>
-                <kp>1000000000000000</kp> <!-- default 1000000000000 -->
+                <kp>1000000000000000</kp> 
                 <kd>1</kd>
-                <!--<min_depth> </min_depth>-->
-                <!--<max_vel>0.01</max_vel>-->
              </ode>
              <bullet>
                 <kp>1000000000000000</kp>
                 <kd>1</kd>
-                <!--<split_impulse_penetration_threshold>  </split_impulse_penetration_threshold>--> <!-- default -0.01 -->
              </bullet>
           </contact>
 
@@ -39,7 +35,7 @@
               <friction2>1</friction2>
             </bullet>
           </friction>
-        </surface>
+        </surface> -->
 
       </collision>
       <visual name="visual">
@@ -52,8 +48,9 @@
         </geometry>
         <material>
           <script>
-            <uri>materials/scripts/test_texture.material</uri>
-            <name>wood_clear</name>-->
+            <uri>model://my_custom_ground_plane/materials/scripts</uri>
+            <uri>model://my_custom_ground_plane/materials/textures</uri>
+            <name>wood_clear</name>
           </script>
         </material>
       </visual>

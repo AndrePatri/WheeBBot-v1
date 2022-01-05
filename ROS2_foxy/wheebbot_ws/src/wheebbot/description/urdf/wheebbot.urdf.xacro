@@ -13,7 +13,7 @@
   <!-- Including the gazebo related stuff -->
   <xacro:include filename="$(find wheebbot)/description/urdf/wheebbot.gazebo.xacro" />
 
-  <link name="base_link">
+  <link name="aux_link">
   </link>
 
   <link name="body">
@@ -119,7 +119,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 ${pi/2}" />
       <geometry>
-        <mesh filename="package://wheebbot/description/meshes/wheel_full.dae" scale="1.0 1.0 1.0" />
+        <mesh filename="package://wheebbot/description/meshes/wheel_black.dae" scale="1.0 1.0 1.0" />
       </geometry>
     </visual>
 
@@ -142,7 +142,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 ${-pi/2}" />
       <geometry>
-        <mesh filename="package://wheebbot/description/meshes/wheel_full.dae" scale="1.0 1.0 1.0" />
+        <mesh filename="package://wheebbot/description/meshes/wheel_black.dae" scale="1.0 1.0 1.0" />
       </geometry>
     </visual>
 
@@ -159,9 +159,9 @@
 
   </link>
 
-  <joint name="floating_base_joint" type="fixed">
+  <joint name="aux_joint" type="fixed">
     <origin xyz="0 0 ${(box_lz/2+leg_length+motor_case_l_edge/2+wheel_radius)}" rpy="0 0 0"/>
-    <parent link="base_link"/>
+    <parent link="aux_link"/>
     <child link="body"/>
   </joint>
 
