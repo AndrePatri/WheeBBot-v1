@@ -37,9 +37,9 @@
 
 ## ToDo
 
-- [ ] Update CADs
+- [x] Update CADs
 
-- [ ] Obtain an URDF representation of the robot. Use realistic collision primitives and visuals; on the contrary, only assign inertial properties to the wheels (possibly including motor's rotor contribution) and to the box link, which should account for all the remaining inertial contributions. The inertial frame will be pitched w.r.t. the collision one, based on the obtained calibration pitch angle.
+- [x] Obtain an URDF representation of the robot. Use realistic collision primitives and visuals; on the contrary, only assign inertial properties to the wheels (possibly including motor's rotor contribution) and to the box link, which should account for all the remaining inertial contributions. The inertial frame will be pitched w.r.t. the collision one, based on the obtained calibration pitch angle.
 
 - [ ] Perform the pitch equilibrium angle calibration using the IMU
 
@@ -67,15 +67,15 @@
 
 - [ ] Testing the effectiveness of balancing/navigation
 
-- [ ] Moving to v2
+- [ ] Move to v2 (actuated legs)
 
 Possible hardware improvements:
 
   - [ ] Test the performance of the RP2040 w.r.t. the Nano IoT
   
-  - [ ] Absolute encoders
+  - [ ] Absolute encoders/ actuators improvements
   
-  - [ ] Deploy the controller on an additional microcontroller to improve RT performance?
+  - [ ] Deploy the controller on a host pc to improve computation time?
  
 
 

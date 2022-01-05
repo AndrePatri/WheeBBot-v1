@@ -6,10 +6,6 @@
     <include>
       <uri>model://my_custom_ground_plane_ign/model.sdf</uri>
     </include>
-
-    <include>
-      <uri>model://WheeBBot/model.sdf</uri>
-    </include>
     
     <scene>
       <grid>true</grid>

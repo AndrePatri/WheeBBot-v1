@@ -7,10 +7,20 @@ from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 
+from launch.conditions import IfCondition
+
 def generate_launch_description():
     
+    is_ign_gazebo_arg= DeclareLaunchArgument(name='ign', default_value="false",
+                                     description='True if Ignition Gazebo is to be used for simulation, false (default) if Gazebo Classic is to be used instead.')                             
+
     package_share_path = get_package_share_path('wheebbot')
-    default_model_path = package_share_path/'description/urdf/wheebbot.urdf.xacro'
+
+    if IfCondition(LaunchConfiguration('ign')): # changing URDF
+        default_model_path = package_share_path/'description/urdf/wheebbot_ign.urdf.xacro'
+    else:
+        default_model_path = package_share_path/'description/urdf/wheebbot.urdf.xacro'
+
     default_rviz_config_path = package_share_path/'rviz/wheebbot.rviz'
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
@@ -24,6 +34,7 @@ def generate_launch_description():
                                       description='Absolute path to robot urdf file')
     rviz_arg = DeclareLaunchArgument(name='rvizconfig', default_value=str(default_rviz_config_path),
                                      description='Absolute path to rviz config file')
+      
 
     robot_description = ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),
                                        value_type=str)
@@ -45,6 +56,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        is_ign_gazebo_arg,
         model_arg,
         rviz_arg,
         use_sim_time_arg,
