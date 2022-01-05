@@ -76,7 +76,7 @@
   uri_visual_wheel='model://WheeBBot/meshes/wheel_black.dae'
  
   # wheels
-  mass_wheel=0.3
+  mass_wheel=0.6
   inertia_wheel=Vector[jy_wheel/2.0, 0, 0, jy_wheel, 0, jy_wheel/2.0] #[Jxx Jxy Jxz Jyy Jyz Jzz]
   cylinder_size_collision_wheel=Vector[wheel_radius, wheel_depth_collision] #radius,lenght respectively
 
@@ -114,7 +114,7 @@
   box_size_collision_fan_top=Vector[fan_box_collision_depth, fan_box_collision_extension, fan_box_collision_height ]
   box_size_collision_fan_back=Vector[fan_box_collision_depth, fan_box_collision_extension, fan_box_collision_height ]
 
-  mass_frame=10
+  mass_frame=5
   inertia_frame=Vector[0.2, 0, 0,  0.1, 0, 0.2] #[Jxx Jxy Jxz Jyy Jyz Jzz]
   
   pose_link_frame=Vector[-(leg_link_length+frame_box_collision_height)/2, frame_box_collision_extension/2, 0, pi, 0, 0]

@@ -12,28 +12,28 @@
 
   <!-- body -->
   <gazebo reference="body">
-    <mu1>0.3</mu1>
-    <mu2>0.3</mu2>
-    <kp>500000000000000</kp>
-    <kd>1</kd>
+    <mu1>${body_mu1_gazebo}</mu1>
+    <mu2>${body_mu2_gazebo}</mu2>
+    <kp>${body_kp_gazebo}</kp>
+    <kd>${body_kd_gazebo}</kd>
   </gazebo>
 
   <!-- right wheel -->
   <gazebo reference="right_wheel">
-    <mu1>0.5</mu1>
-    <mu2>0.5</mu2>
-    <kp>500000000000000</kp>
-    <kd>1</kd>
-    <maxContacts>10</maxContacts>
+    <mu1>${wheel_mu1_gazebo}</mu1>
+    <mu2>${wheel_mu2_gazebo}</mu2>
+    <kp>${wheel_kp_gazebo}</kp>
+    <kd>${wheel_kd_gazebo}</kd>
+    <maxContacts>${wheel_max_contacts_gazebo}</maxContacts>
   </gazebo>
 
   <!-- left wheel -->
   <gazebo reference="left_wheel">
-    <mu1>0.5</mu1>
-    <mu2>0.5</mu2>
-    <kp>500000000000000</kp>
-    <kd>1</kd>
-    <maxContacts>10</maxContacts>
+    <mu1>${wheel_mu1_gazebo}</mu1>
+    <mu2>${wheel_mu2_gazebo}</mu2>
+    <kp>${wheel_kp_gazebo}</kp>
+    <kd>${wheel_kd_gazebo}</kd>
+    <maxContacts>${wheel_max_contacts_gazebo}</maxContacts>
   </gazebo>
 
 </robot>
