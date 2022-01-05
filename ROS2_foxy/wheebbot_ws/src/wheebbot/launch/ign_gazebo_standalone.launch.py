@@ -52,15 +52,6 @@ def generate_launch_description():
     is_paused_arg=DeclareLaunchArgument('paused', default_value='false',
                                 description='Set to "false" to avoid starting from a paused simulation')                             
 
-    # Spawn
-    spawn = Node(package='ros_ign_gazebo', executable='create',
-                arguments=[
-                    '-name', 'wheebbot',
-                    '-topic', 'robot_description',
-                    ],
-                output='screen',
-                )
-
     return LaunchDescription([
         world_arg,
         verbosity_arg,

@@ -18,7 +18,7 @@
     <!-- Global light sources -->
   
     <light type="directional" name="sun">
-          <cast_shadows>false</cast_shadows>
+          <cast_shadows>1</cast_shadows>
           <pose>0 0 10 0 0 0</pose>
           <diffuse>0.8 0.8 0.8 1</diffuse>
           <specular>0.2 0.2 0.2 1</specular>
@@ -40,6 +40,8 @@
           </clouds>
         </sky>
         <shadows>0</shadows> 
+        <grid>0</grid>
+        <origin_visual>1</origin_visual>
     </scene>
 
     <!--%%%%%%%%%%%%%%%% PHYSICS SETTINGS %%%%%%%%%%%%%%%%-->

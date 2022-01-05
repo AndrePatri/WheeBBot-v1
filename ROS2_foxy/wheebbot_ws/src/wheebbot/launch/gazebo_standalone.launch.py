@@ -15,23 +15,20 @@
 """Launch Gazebo server and client with command line arguments."""
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.actions import IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument,IncludeLaunchDescription
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration
-from launch.substitutions import ThisLaunchFileDir
-
+from launch.substitutions import ThisLaunchFileDir,LaunchConfiguration
 
 def generate_launch_description():
-
+  
     is_gui_arg=DeclareLaunchArgument('gui', default_value='true',
                                 description='Set to "false" to run headless.')
     is_server_arg=DeclareLaunchArgument('server', default_value='true',
                                 description='Set to "false" not to run gzserver.')
-    is_gzserver_verbose_arg=DeclareLaunchArgument('gzserver_v', default_value='true',
+    is_gzserver_verbose_arg=DeclareLaunchArgument('gzserver_v', default_value='false',
                                 description='Set to "true" to verbose the output.')                         
-    is_gzclient_verbose_arg=DeclareLaunchArgument('gzclient_v', default_value='true',
+    is_gzclient_verbose_arg=DeclareLaunchArgument('gzclient_v', default_value='false',
                                 description='Set to "true" to verbose the output.')
     world_arg=DeclareLaunchArgument('world', default_value='wheebbot.world',
                                 description='World to be loaded (its location needs to be in GAZEBO_RESOURCE_PATH)') 
@@ -56,7 +53,8 @@ def generate_launch_description():
             launch_arguments={
                 'verbose': LaunchConfiguration('gzclient_v')
             }.items()
-        )                      
+        )   
+  
     return LaunchDescription([
         is_gui_arg,
         is_server_arg,
@@ -67,4 +65,4 @@ def generate_launch_description():
         physics_type_arg,
         gzclient_node,
         gzserver_node,
-    ])
+        ])

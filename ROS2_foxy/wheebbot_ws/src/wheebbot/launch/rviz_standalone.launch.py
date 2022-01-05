@@ -1,3 +1,5 @@
+"""Launch RViz2 and the robot_state_publisher. An external node publishing joint state is necessary for the TF to work."""
+
 from ament_index_python.packages import get_package_share_path
 
 from launch import LaunchDescription
@@ -10,17 +12,10 @@ from launch_ros.parameter_descriptions import ParameterValue
 from launch.conditions import IfCondition
 
 def generate_launch_description():
-    
-    is_ign_gazebo_arg= DeclareLaunchArgument(name='ign', default_value="false",
-                                     description='True if Ignition Gazebo is to be used for simulation, false (default) if Gazebo Classic is to be used instead.')                             
 
     package_share_path = get_package_share_path('wheebbot')
 
-    if IfCondition(LaunchConfiguration('ign')): # changing URDF
-        default_model_path = package_share_path/'description/urdf/wheebbot_ign.urdf.xacro'
-    else:
-        default_model_path = package_share_path/'description/urdf/wheebbot.urdf.xacro'
-
+    default_model_path = package_share_path/'description/urdf/wheebbot.urdf.xacro'
     default_rviz_config_path = package_share_path/'rviz/wheebbot.rviz'
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
@@ -56,7 +51,6 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        is_ign_gazebo_arg,
         model_arg,
         rviz_arg,
         use_sim_time_arg,

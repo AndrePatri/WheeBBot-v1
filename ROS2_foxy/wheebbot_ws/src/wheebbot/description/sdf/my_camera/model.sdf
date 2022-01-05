@@ -7,18 +7,18 @@
       <pose>2.0 2.0 0.8 0 0.175 3.926</pose> <!--lateral view -->
 
       <link name='my_camera_link'>
-        <!-- <visual name='visual'>
+        <visual name='visual'>
           <geometry>
             <box>
               <size>0.1 0.1 0.1</size>
             </box>
           </geometry>
-        </visual> -->
+        </visual>
         <sensor name='my_camera_sensor' type='camera'>
           <camera>
-            <!-- <save enabled="true">
-              <path> package://media/video_frames/ </path>
-            </save> -->
+            <save enabled="true">
+              <path> /home/andreap/WheeBBot/WheeBBot_v1/ROS2_foxy/wheebbot_ws/src/wheebbot/media/videos/video_frames </path>
+            </save>
             <horizontal_fov>1</horizontal_fov>
             <image>
               <width>1920</width>

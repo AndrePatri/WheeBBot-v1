@@ -1,26 +1,35 @@
-"""Launch RViz2, the robot_state_publisher, joint_state_publisher, joint_state_publisher_gui for testing the URDF and its joints"""
+"""Launch RViz2 and the robot_state_publisher. An external node publishing joint state is necessary for the TF to work."""
 
 from ament_index_python.packages import get_package_share_path
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch.conditions import IfCondition, UnlessCondition
 from launch.substitutions import Command, LaunchConfiguration
 
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 
+from launch.conditions import IfCondition
+
 def generate_launch_description():
+    
     package_share_path = get_package_share_path('wheebbot')
-    default_model_path = package_share_path/'description/urdf/wheebbot.urdf.xacro'
+
+    default_model_path = package_share_path/'description/urdf/wheebbot_ign.urdf.xacro'
     default_rviz_config_path = package_share_path/'rviz/wheebbot.rviz'
 
-    gui_arg = DeclareLaunchArgument(name='gui', default_value='true', choices=['true', 'false'],
-                                    description='Flag to enable joint_state_publisher_gui')
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+
+    use_sim_time_arg=DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='false',
+            description='Use simulation (Gazebo) clock if true')
+
     model_arg = DeclareLaunchArgument(name='model', default_value=str(default_model_path),
                                       description='Absolute path to robot urdf file')
     rviz_arg = DeclareLaunchArgument(name='rvizconfig', default_value=str(default_rviz_config_path),
                                      description='Absolute path to rviz config file')
+      
 
     robot_description = ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),
                                        value_type=str)
@@ -28,20 +37,8 @@ def generate_launch_description():
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        parameters=[{'robot_description': robot_description}]
-    )
-
-    # Depending on gui parameter, either launch joint_state_publisher or joint_state_publisher_gui
-    joint_state_publisher_node = Node(
-        package='joint_state_publisher',
-        executable='joint_state_publisher',
-        condition=UnlessCondition(LaunchConfiguration('gui'))
-    )
-
-    joint_state_publisher_gui_node = Node(
-        package='joint_state_publisher_gui',
-        executable='joint_state_publisher_gui',
-        condition=IfCondition(LaunchConfiguration('gui'))
+        name='robot_state_publisher',
+        parameters=[{'use_sim_time': use_sim_time,'robot_description': robot_description}]
     )
 
     rviz_node = Node(
@@ -50,14 +47,13 @@ def generate_launch_description():
         name='rviz2',
         output='screen',
         arguments=['-d', LaunchConfiguration('rvizconfig')],
+        parameters=[{'use_sim_time': use_sim_time}]
     )
 
     return LaunchDescription([
-        gui_arg,
         model_arg,
         rviz_arg,
-        joint_state_publisher_node,
-        joint_state_publisher_gui_node,
+        use_sim_time_arg,
         robot_state_publisher_node,
-        rviz_node
+        rviz_node,
     ])

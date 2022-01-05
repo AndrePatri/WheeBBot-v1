@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Launch Ignition Gazebo with command line arguments."""
+"""Launch Ignition Gazebo with command line arguments and spawn model."""
 
 from os import environ
 
@@ -23,11 +23,22 @@ from launch.substitutions import LaunchConfiguration
 from launch.actions import ExecuteProcess
 from launch.actions import Shutdown
 
-from launch.substitutions import PythonExpression
+from launch_ros.parameter_descriptions import ParameterValue
+
+from launch.substitutions import Command, LaunchConfiguration,PythonExpression
 
 from launch_ros.actions import Node
 
+from ament_index_python.packages import get_package_share_path
+
 def generate_launch_description():
+
+    package_share_path = get_package_share_path('wheebbot')
+    default_model_path = package_share_path/'description/urdf/wheebbot_ign.urdf.xacro'
+    robot_description = ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),
+                                       value_type=str)
+
+    use_sim_time = LaunchConfiguration('use_sim_time', default='true')
 
     env = {'IGN_GAZEBO_SYSTEM_PLUGIN_PATH':
            ':'.join([environ.get('IGN_GAZEBO_SYSTEM_PLUGIN_PATH', default=''),
@@ -38,9 +49,11 @@ def generate_launch_description():
         # Pass through arguments to ign gazebo
         LaunchConfiguration('world'),
         '--verbose', LaunchConfiguration('verbose'),
-
     ]
-    
+
+    model_arg = DeclareLaunchArgument(name='model', default_value=str(default_model_path),
+                                      description='Absolute path to robot urdf file')
+
     is_gui_arg=DeclareLaunchArgument('gui', default_value='true',
                                 description='Set to "false" to run headless.')
     run_headless_arg=DeclareLaunchArgument('headless', default_value='false',
@@ -52,8 +65,19 @@ def generate_launch_description():
     is_paused_arg=DeclareLaunchArgument('paused', default_value='false',
                                 description='Set to "false" to avoid starting from a paused simulation')                             
 
-    # Spawn
-    spawn = Node(package='ros_ign_gazebo', executable='create',
+    use_sim_time_arg=DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='false',
+            description='Use simulation (Gazebo) clock if true')
+
+    robot_state_publisher_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher',
+        parameters=[{'use_sim_time': use_sim_time,'robot_description': robot_description}]
+    )
+
+    spawn_node = Node(package='ros_ign_gazebo', executable='create',
                 arguments=[
                     '-name', 'wheebbot',
                     '-topic', 'robot_description',
@@ -62,15 +86,19 @@ def generate_launch_description():
                 )
 
     return LaunchDescription([
+        model_arg,
         world_arg,
         verbosity_arg,
+        use_sim_time_arg,
         ExecuteProcess(
             cmd=command,
             output='screen',
             shell=True,
             on_exit=Shutdown(),
             additional_env=env,
-        )
+        ),
+        spawn_node,
+        robot_state_publisher_node,
     ])
 
 # Add boolean commands if true
@@ -92,4 +120,3 @@ def _plugin_command(arg):
     cmd = ['"-s libgazebo_ros_', arg, '.so" if "true" == "', LaunchConfiguration(arg), '" else ""']
     py_cmd = PythonExpression(cmd)
     return py_cmd
-
