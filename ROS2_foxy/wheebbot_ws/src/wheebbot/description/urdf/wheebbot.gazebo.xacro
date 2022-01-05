@@ -10,16 +10,30 @@
     </plugin>
   </gazebo>
 
+  <!-- body -->
+  <gazebo reference="body">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <kp>500000000000000</kp>
+    <kd>1</kd>
+  </gazebo>
+
   <!-- right wheel -->
   <gazebo reference="right_wheel">
     <mu1>0.5</mu1>
     <mu2>0.5</mu2>
+    <kp>500000000000000</kp>
+    <kd>1</kd>
+    <maxContacts>10</maxContacts>
   </gazebo>
 
   <!-- left wheel -->
   <gazebo reference="left_wheel">
     <mu1>0.5</mu1>
     <mu2>0.5</mu2>
+    <kp>500000000000000</kp>
+    <kd>1</kd>
+    <maxContacts>10</maxContacts>
   </gazebo>
 
 </robot>
