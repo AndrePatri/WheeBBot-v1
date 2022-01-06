@@ -1,6 +1,6 @@
 # First version of the Wheeled-Balancing-roBot
 
-![WheeBBot](https://github.com/AndPatr/WheeBBot-v1.git/repo_images/repo_image.jpg)
+![WheeBBot](repo_images/repo_image.jpg)
 
 ## Prototype main characteristics:
 
