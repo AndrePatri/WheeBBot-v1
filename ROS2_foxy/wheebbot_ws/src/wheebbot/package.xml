@@ -1,30 +1,36 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 
-<package format="3">
+<package format="3"> <!-- ROS2 uses format 3-->
+
+  <!--############## GENERAL INFO ################  -->
+
+  <!-- required tags -->
   <name>wheebbot</name>
-  <version>1.0.0</version>
+  <version>0.0.1</version>
   <description>The WheeBBot package</description>
   <maintainer email="andrepatrizi1b6e6@gmail.com">andreap</maintainer>
-  <license>TODO: License declaration</license>
+  <license>BSD</license>
+  <!-- optional -->
+  <url type="repository"> https://github.com/AndPatr/WheeBBot-v1 </url>   
+  <author email="andrepatrizi1b6e6@gmail.com"> Andrea Patrizi </author>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
+  <!--############# DEPENDENCIES ################  -->
+
+  <!-- build tool dep -->
+  <buildtool_depend>ament_cmake</buildtool_depend> <!-- build tool dependency used by ROS2-->
   
   <exec_depend>ros2launch</exec_depend> <!-- helps make sure that the ros2 launch command is available after building your package. It also ensures that all launch file formats are recognized-->
-  <exec_depend>joint_state_publisher</exec_depend>
-  <exec_depend>joint_state_publisher_gui</exec_depend>
-  <exec_depend>robot_state_publisher</exec_depend> 
-
-  <exec_depend>gazebo_ros</exec_depend> 
-  <exec_depend>gazebo_plugins</exec_depend> 
-
-  <exec_depend>ros_ign</exec_depend> 
-
-  <exec_depend>tf2</exec_depend>
-
-  <exec_depend>rviz2</exec_depend> <!-- rviz2 for visualizing the robot-->
-  <exec_depend>xacro</exec_depend> <!-- for handling xacro-->
-  <exec_depend>joy</exec_depend> <!-- joystick driver package-->
+  <exec_depend>joint_state_publisher</exec_depend> <!-- joint state publisher, needed at runtime-->
+  <exec_depend>joint_state_publisher_gui</exec_depend> <!-- joint state publisher-gui, needed at runtime-->
+  <exec_depend>robot_state_publisher</exec_depend> <!-- robot state publisher, needed at runtime-->
+  <exec_depend>gazebo_ros</exec_depend> <!-- needed by Gazebo Classic at runtime-->
+  <exec_depend>gazebo_plugins</exec_depend> <!-- needed by Gazebo Classic at runtime-->
+  <exec_depend>ros_ign</exec_depend> <!-- needed by Ignition Gazebo at runtime-->
+  <exec_depend>tf2</exec_depend> <!-- needed at runtime-->
+  <exec_depend>rviz2</exec_depend> <!-- rviz2 for visualizing the robot; needed at runtime-->
+  <exec_depend>xacro</exec_depend> <!-- xacro for generating the urdf description of the robot at runtime-->
+  <exec_depend>joy</exec_depend> <!-- joystick driver package; needed at runtime-->
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
