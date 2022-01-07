@@ -12,7 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Launch Ignition Gazebo with command line arguments and spawn model."""
+"""
+Launch Ignition Gazebo with command line arguments and spawn model.
+By default, the wheebbot.world is loaded at startup and WheeBBot is spawned.
+Also launch the rviz2 node for visualizing the robot.
+
+"""
 
 from os import environ
 
@@ -37,6 +42,7 @@ def generate_launch_description():
     default_model_path = package_share_path/'description/urdf/wheebbot_ign.urdf.xacro'
     robot_description = ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),
                                        value_type=str)
+    default_rviz_config_path = package_share_path/'rviz/wheebbot.rviz'
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
 
@@ -52,8 +58,7 @@ def generate_launch_description():
     ]
 
     model_arg = DeclareLaunchArgument(name='model', default_value=str(default_model_path),
-                                      description='Absolute path to robot urdf file')
-
+                                      description='Absolute path to robot urdf file')                                 
     is_gui_arg=DeclareLaunchArgument('gui', default_value='true',
                                 description='Set to "false" to run headless.')
     run_headless_arg=DeclareLaunchArgument('headless', default_value='false',
@@ -70,11 +75,15 @@ def generate_launch_description():
             default_value='false',
             description='Use simulation (Gazebo) clock if true')
 
-    robot_state_publisher_node = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        name='robot_state_publisher',
-        parameters=[{'use_sim_time': use_sim_time,'robot_description': robot_description}]
+    rviz_arg = DeclareLaunchArgument(name='rvizconfig', default_value=str(default_rviz_config_path),
+                                     description='Absolute path to rviz config file')
+
+    ign_gazebo_node=ExecuteProcess(
+            cmd=command,
+            output='screen',
+            shell=True,
+            on_exit=Shutdown(),
+            additional_env=env,
     )
 
     spawn_node = Node(package='ros_ign_gazebo', executable='create',
@@ -85,20 +94,48 @@ def generate_launch_description():
                 output='screen',
                 )
 
+    ros_ign_bridge_node = Node(
+        package='ros_ign_bridge',
+        executable='parameter_bridge',
+        arguments=[
+                # Clock (IGN -> ROS2)
+                '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
+                # Joint states (IGN -> ROS2)
+                '/world/wheebbot_ign_world/model/wheebbot/joint_state@sensor_msgs/msg/JointState[ignition.msgs.Model',
+                ],
+        remappings=[
+            ('/world/wheebbot_ign_world/model/wheebbot/joint_state', 'joint_states'),
+        ],
+        output='screen'
+    )
+
+    robot_state_publisher_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher',
+        parameters=[{'use_sim_time': use_sim_time,'robot_description': robot_description}]
+    )
+
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', LaunchConfiguration('rvizconfig')],
+        parameters=[{'use_sim_time': use_sim_time}]
+    )
+
     return LaunchDescription([
         model_arg,
         world_arg,
         verbosity_arg,
         use_sim_time_arg,
-        ExecuteProcess(
-            cmd=command,
-            output='screen',
-            shell=True,
-            on_exit=Shutdown(),
-            additional_env=env,
-        ),
+        rviz_arg,
+        ign_gazebo_node,
         spawn_node,
+        ros_ign_bridge_node,
         robot_state_publisher_node,
+        rviz_node,
     ])
 
 # Add boolean commands if true

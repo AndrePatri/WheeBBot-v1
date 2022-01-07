@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- joint state publisher (this way gazebo publishes joint states to RViz) -->
+  <!-- joint state publisher (this way ignition gazebo publishes joint states to RViz) -->
   <gazebo>
-    <plugin name="ignition::gazebo::systems::JointStatePublisher" filename="libignition-gazebo-joint-state-publisher-system.so">
-      <update_rate>20</update_rate>
-      <joint_name>left_wheel_joint</joint_name>
-      <joint_name>right_wheel_joint</joint_name>
-    </plugin>
+    <gazebo>
+    <plugin filename="libignition-gazebo-joint-state-publisher-system.so" name="ignition::gazebo::systems::JointStatePublisher"/>
+    </gazebo>
   </gazebo>
 
   <!-- body -->

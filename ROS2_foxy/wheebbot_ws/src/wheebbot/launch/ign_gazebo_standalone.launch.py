@@ -12,7 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Launch Ignition Gazebo with command line arguments."""
+"""
+Launch Ignition Gazebo with command line arguments.
+By default, the wheebbot.world is loaded at startup.
+
+"""
 
 from os import environ
 

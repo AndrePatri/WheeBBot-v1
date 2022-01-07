@@ -13,7 +13,7 @@
 # limitations under the License.
 
 """
-Spawn entity into an already running gazebo node.
+Spawn entity into an already running ignition node.
 This node launches both a robot_state_publisher node, which is needed for providing the robot_description;
 the robot_description is used by the spawner node to spawn the URDF of the robot which, by default, is the WheeBBot.
 
@@ -32,29 +32,33 @@ from ament_index_python.packages import get_package_share_path
 
 def generate_launch_description():
 
+    package_share_path = get_package_share_path('wheebbot')
+    default_model_path = package_share_path/'description/urdf/wheebbot_ign.urdf.xacro'
     robot_description = ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),
                                        value_type=str)
-    package_share_path = get_package_share_path('wheebbot')
-    default_model_path = package_share_path/'description/urdf/wheebbot.urdf.xacro'
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
 
     model_arg = DeclareLaunchArgument(name='model', default_value=str(default_model_path),
                                       description='Absolute path to robot urdf file')
-
+    
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         name='robot_state_publisher',
         parameters=[{'use_sim_time': use_sim_time,'robot_description': robot_description}]
     )
-    
-    spawn_entity_node = Node(package='gazebo_ros', node_executable='spawn_entity.py',
-                        arguments=['-entity', 'wheebbot', '-topic', 'robot_description'],
-                        output='screen')
+
+    spawn_node = Node(package='ros_ign_gazebo', executable='create',
+                arguments=[
+                    '-name', 'wheebbot',
+                    '-topic', 'robot_description',
+                    ],
+                output='screen',
+    )
 
     return LaunchDescription([
         model_arg,
         robot_state_publisher_node,
-        spawn_entity_node,
+        spawn_node,
     ])

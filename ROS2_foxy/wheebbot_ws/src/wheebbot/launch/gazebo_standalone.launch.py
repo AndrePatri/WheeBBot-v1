@@ -12,8 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Launch Gazebo server and client with command line arguments."""
+"""
+Launch Gazebo Classic with command line arguments.
+By default, the wheebbot.world is loaded at startup.
 
+"""
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument,IncludeLaunchDescription
 from launch.conditions import IfCondition

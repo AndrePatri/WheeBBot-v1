@@ -1,5 +1,9 @@
-"""Launch RViz2 and the robot_state_publisher. An external node publishing joint state is necessary for the TF to work."""
+"""
+Launches RViz2 and the robot_state_publisher nodes. 
+(an external node publishing joint state is necessary to be able to compute the TFs).
+By default, the used model for the robot_description is the WheeBBot.
 
+"""
 from ament_index_python.packages import get_package_share_path
 
 from launch import LaunchDescription
@@ -54,6 +58,6 @@ def generate_launch_description():
         model_arg,
         rviz_arg,
         use_sim_time_arg,
-        robot_state_publisher_node,
         rviz_node,
+        robot_state_publisher_node,
     ])
