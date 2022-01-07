@@ -19,12 +19,12 @@ wheebbot:
   wheel_mu1_gazebo: 0.5 # static friction coefficient in the first direction
   wheel_mu2_gazebo: 0.5 # static friction coefficient in the second direction
   wheel_kp_gazebo: 1000000.0 # wheel collision contact stiffness
-  wheel_kd_gazebo: 1.0 # wheel collision contact damping
+  wheel_kd_gazebo: 0.0 # wheel collision contact damping
   wheel_max_contacts_gazebo: 10 # wheel maximum number of contacts
   body_mu1_gazebo: 0.3
   body_mu2_gazebo: 0.3
   body_kp_gazebo: 1000000.0
-  body_kd_gazebo: 1.0
+  body_kd_gazebo: 0.0
  
   box_lx: 0.16 # body box x-extension (visual)
   box_ly: 0.21 # body box y-extension (visual)
