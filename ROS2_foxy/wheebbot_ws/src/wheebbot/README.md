@@ -1,5 +1,5 @@
 # Package directory structure (the files might not be updated, but the package structure remains valid):
-
+```
 📦wheebbot
  ┣ 📂config
  ┃ ┣ 📜IMU.yaml
@@ -122,4 +122,4 @@
  ┣ 📜CMakeLists.txt
  ┣ 📜model.config
  ┗ 📜package.xml
-
+```
