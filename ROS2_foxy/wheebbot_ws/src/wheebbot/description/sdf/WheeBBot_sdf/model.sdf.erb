@@ -72,8 +72,8 @@
   wheel_contact_kd=1 #default 1;good 1;0
 
   ### Meshes URI###
-  uri_visual_frame='model://WheeBBot/meshes/full_no_knee_no_wheels.dae'
-  uri_visual_wheel='model://WheeBBot/meshes/wheel_black.dae'
+  uri_visual_frame='model://WheeBBot_sdf/meshes/full_no_knee_no_wheels.dae'
+  uri_visual_wheel='model://WheeBBot_sdf/meshes/wheel_black.dae'
  
   # wheels
   mass_wheel=0.6
@@ -138,7 +138,7 @@
 %>
 <sdf version="1.7">
 
-  <model name="WheeBBot">
+  <model name="WheeBBot_sdf">
 
     <pose> <%=a_to_s(model_pose ) %> </pose>
 

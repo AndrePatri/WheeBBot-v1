@@ -37,7 +37,20 @@
 
   <export>
     <build_type>ament_cmake</build_type>
-    <gazebo_ros gazebo_plugin_path="${prefix}/lib" gazebo_model_path="${prefix}/.." /> 
+    
+    <!-- Exporting some gazebo environmental variables so that models and meshes are visible -->
+    <!-- Unfortunately, as of now, gazebo_ros does not support exporting also the GAZEBO_RESOURCE_PATH -->   
+    <gazebo_ros 
+      gazebo_plugin_path="${prefix}/plugins/gazebo_classic" 
+      gazebo_model_path="${prefix}/description/sdf:${prefix}/.." 
+      gazebo_media_path="${prefix}/../../../../src/wheebbot/media"
+    /> 
+
+    <!-- adding the package location to the gazebo model path, so that URDF meshes can be successfully loaded by Ignition Gazebo -->
+    <!-- <ign_ros 
+      gazebo_plugin_path="${prefix}/lib" 
+      gazebo_model_path="${prefix}/.." 
+    />  -->
   </export>
 
 </package>

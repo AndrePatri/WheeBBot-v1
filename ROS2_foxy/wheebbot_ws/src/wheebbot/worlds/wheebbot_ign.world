@@ -9,11 +9,11 @@
     
     <scene>
       <grid>true</grid>
-      <sky>
+      <!-- <sky>
         <clouds>
             <speed>10</speed>
         </clouds>
-      </sky>
+      </sky> -->
     </scene>
 
     <light type="directional" name="sun">
