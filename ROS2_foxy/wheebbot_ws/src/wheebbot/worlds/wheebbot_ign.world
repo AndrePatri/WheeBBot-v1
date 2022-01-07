@@ -4,9 +4,9 @@
   <world name="wheebbot_ign_world">
 
     <include>
-      <uri>model://my_custom_ground_plane_ign/model.sdf</uri>
+      <uri>model://my_custom_ground_plane_ign</uri>
     </include>
-    
+  
     <scene>
       <grid>true</grid>
       <!-- <sky>
@@ -36,7 +36,7 @@
       <plugin filename="GzScene3D" name="3D View">
           <ignition-gui>
           <title>3D View</title>
-          <property type="bool" key="showTitleBar">false</property>
+          <property type="bool" key="showTitleBar">true</property>
           <property type="string" key="state">docked</property>
           </ignition-gui>
 
@@ -150,7 +150,7 @@
       </plugin>
 
       <!-- Screenshot -->
-      <!-- <plugin filename="Screenshot" name="Screenshot">
+      <plugin filename="Screenshot" name="Screenshot">
         <ignition-gui>
           <property key="resizable" type="bool">false</property>
           <property key="x" type="double">250</property>
@@ -161,13 +161,19 @@
           <property key="showTitleBar" type="bool">false</property>
           <property key="cardBackground" type="string">#777777</property>
         </ignition-gui>
-      </plugin> -->
+      </plugin>
 
     </gui>
 
     <physics name="1ms" type="dart">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
+      <dart>
+        <solver>
+          <solver_type>dantzig </solver_type> <!-- dantzig (default), pgs -->
+        </solver>
+        <collision_detector> dart </collision_detector> <!-- ode (default), bullet, fcl, dart -->
+      </dart>
     </physics>
 
     <plugin

@@ -12,6 +12,7 @@
           </geometry>
         </collision>
         <visual name="visual">
+          <cast_shadows>false</cast_shadows>
           <geometry>
             <plane>
               <normal>0 0 1</normal>
@@ -23,9 +24,9 @@
             <diffuse>0.8 0.8 0.8 1</diffuse>
             <specular>0.8 0.8 0.8 1</specular>
             <!-- <script>
-              <uri>model://my_custom_ground_plane/materials/scripts</uri>
-              <uri>model://my_custom_ground_plane/materials/textures</uri>
-              <name>wood_clear</name>
+              <uri>model://my_custom_ground_plane_ign/materials/scripts</uri>
+              <uri>model://my_custom_ground_plane_ign/materials/textures</uri>
+              <name>vrc/light_wood</name>
             </script> -->
           </material>
         </visual>
