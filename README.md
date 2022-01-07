@@ -4,6 +4,8 @@
 
 ## Prototype main characteristics:
 
+- [ ] See how to make rosdep install all package dependencies
+
 - Fixed legs (no knee and, hence, no leg actuation)
 
 - Structure made of aluminum 20x20 V-slotted profiles
