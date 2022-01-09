@@ -45,12 +45,6 @@
       gazebo_model_path="${prefix}/description/sdf:${prefix}/.." 
       gazebo_media_path="${prefix}/../../../../src/wheebbot/media"
     /> 
-
-    <!-- adding the package location to the gazebo model path, so that URDF meshes can be successfully loaded by Ignition Gazebo -->
-    <!-- <ign_ros 
-      gazebo_plugin_path="${prefix}/lib" 
-      gazebo_model_path="${prefix}/.." 
-    />  -->
   </export>
 
 </package>
