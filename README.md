@@ -4,8 +4,6 @@
 
 ## Prototype main characteristics:
 
-- [ ] See how to make rosdep install all package dependencies
-
 - Fixed legs (no knee and, hence, no leg actuation)
 
 - Structure made of aluminum 20x20 V-slotted profiles
@@ -43,9 +41,13 @@
 
 - [ ] Test the connection RViz2 - Ignition
 
+- [ ] See env hooks for Ignition (and also Classic)
+
+- [ ] See how to load a gui.config in ign world file
+
 - [x] Update CADs
 
-- [x] Obtain an URDF representation of the robot. Use realistic collision primitives and visuals; on the contrary, only assign inertial properties to the wheels (possibly including motor's rotor contribution) and to the box link, which should account for all the remaining inertial contributions. The inertial frame will be pitched w.r.t. the collision one, based on the obtained calibration pitch angle.
+- [x] Obtain an URDF representation of the robot. Use realistic collision primitives and visuals; on the contrary, only assign inertial properties to the wheels (possibly including motor's rotor contribution) and to the box link, which should account for all the remaining inertial contributions. The inertial frame will be pitched w.r.t. the collision one, based on the obtained calibration pitch angle. 
 
 - [ ] Perform the pitch equilibrium angle calibration using the IMU
 
