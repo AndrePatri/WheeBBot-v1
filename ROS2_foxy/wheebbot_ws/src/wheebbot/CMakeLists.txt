@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(wheebbot)
 
+set(CMAKE_CXX_STANDARD 14)
+
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
@@ -16,6 +18,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # find dependencies
+find_package(ignition-gazebo6 REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(xacro REQUIRED)
 
@@ -31,4 +34,5 @@ if(BUILD_TESTING)
 endif()
 
 install(DIRECTORY launch description config rviz src worlds DESTINATION share/${PROJECT_NAME}) # installing diretories so that ros2 can see them
+
 ament_package()
