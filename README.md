@@ -35,55 +35,28 @@
 - [ROS1_noetic/wheebbot_ws](https://github.com/AndPatr/WheeBBot-v1/tree/main/ROS1_noetic/wheebbot_ws) holds all files and workspaces associated to ROS noetic 
 
 
-## ToDo
+## (short term) ToDo
 
-- [ ] Find out why Ignition isn't able to visualize the ground mesh
+- Hardware:
 
-- [ ] Test the connection RViz2 - Ignition
+ - [ ] Wire a new cable for connecting to ODrive CAN bus
+ - [ ] Improve encoder connections (including the new JST pins)
 
-- [ ] See env hooks for Ignition (and also Classic)
 
-- [ ] See how to load a gui.config in ign world file
+- Software:
 
-- [x] Update CADs
-
-- [x] Obtain an URDF representation of the robot. Use realistic collision primitives and visuals; on the contrary, only assign inertial properties to the wheels (possibly including motor's rotor contribution) and to the box link, which should account for all the remaining inertial contributions. The inertial frame will be pitched w.r.t. the collision one, based on the obtained calibration pitch angle. 
-
-- [ ] Perform the pitch equilibrium angle calibration using the IMU
-
-- [ ] Write the full floating base model of the system (possibly using Matlab's symbolic language), to be used by the controller. Also check if using RBDL or similar can be viable
-
-- [x] Test torque commands and encoder feedback to/from ODrive through CAN  
-
-- [x] Possibly modify ODrive firmware to also return the measured i_d current on both axes
-
-- [ ] Flash firmware on the ODrive and test if it works properly (double check if the tup.config file has the correct board version set)
-
-- [ ] Write a node which reads IMU data on can1 bus and wheel encoders data on can0 and publishes it (with possible post-processing) to a WheeBBot_state topic. Initially employ python scripts and the .dbc files. In a second phase, explore the possibility of using more efficient c++ code which interfaces with SocketCAN
-
-- [ ] Setup a GUI for interacting with the robot using RQt
-
-- [ ] Setup a controller (possibly a service) node, which reads the full state, the output references and publishes the desired control inputs. This node should hold the controller script to be tested on the robot and should be written in a modular way, in a way that different control inputs can be integrated easily. This node could also be deployed on the host pc so that the RPI is lifted from the computational burden. 
-
-- [ ] Write a node which, given the computed inputs, sends the control inputs on can0 to the ODrive (torques)
-	  
-- [ ] Writing a sample controller. Ideally it should be made of a two stage controller: an higher level one (kinematic), which takes velocity references (for example of the CoM) and a lower level one, which translates those references into the joint space.
-
-- [ ] Writing a node (to be run on a host pc) which reads output references published by an USB joystick (Xbox360) and sends high level references to the controller node on the RPI.
-
-- [ ] Testing the real-time performance of the system without actuating the robot (if necessary, switch to Xenomai)
-
-- [ ] Testing the effectiveness of balancing/navigation
-
-- [ ] Move to v2 (actuated legs)
-
-Possible hardware improvements:
-
-  - [ ] Test the performance of the RP2040 w.r.t. the Nano IoT
-  
-  - [ ] Absolute encoders/ actuators improvements
-  
-  - [ ] Deploy the controller on a host pc to improve computation time?
+ - [ ] Test modified firmware and check the data rate is fixed and consistent
+ - [ ] Plot read data on the CAN bus (both can0 and can1) using the cantools plotting utility (ODrive .dbc shouldn't need any changes)
+ - [ ] Find out why Ignition isn't able to visualize the ground meshes
+ - [ ] Test the connection RViz2 - Ignition (make the joint state publisher work)
+ - [ ] See if env hooks can be effectively used to export Ign and Gaz. environmental variables
+ - [ ] See how to load properly a gui.config in ign world file
+ - [ ] Perform the pitch equilibrium angle calibration using the IMU
+ - [ ] Document on Pinocchio rigid body library  
+ - [ ] Outline a node structure for the ROS nodes, etc...
+ - [ ] GUI for interacting with the robot (using RQt?)
+ - [ ] Write a sample controller and test balancing/navigation
+ 
  
 
 

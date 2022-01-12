@@ -344,3 +344,10 @@ Then, run
 `sudo systemctl enable systemd-networkd`
 
 to start systemd-networkd at boot time
+
+---
+## To make a device with ubuntu 20.04 a wifi access point (useful to run ROS on multiple machines without having to use an external wifi router)
+
+- `nmcli d` simply shows the wifi connections
+- `nmcli d wifi list` list available networks	
+- `nmcli d wifi hotspot ifname <wifi_iface> ssid <ssid> password <password>` (<wifi_iface>- wifi interface name [e.g. wlp58s0],<ssid> is the wifi name, <password> is the password to be assigned )
