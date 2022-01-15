@@ -18,8 +18,15 @@
   <!--############# DEPENDENCIES ################  -->
 
   <!-- build tool dep -->
-  <buildtool_depend>ament_cmake</buildtool_depend> <!-- build tool dependency used by ROS2-->
-  
+  <buildtool_depend>ament_cmake</buildtool_depend> <!--c++ code-->
+  <buildtool_depend>ament_cmake_python</buildtool_depend> <!-- python code; cmake_python allows the use of CMakerLists also for python. 
+  Alternatively, ament_python can be used -->
+
+  <!-- standard dep -->
+  <depend>rclcpp</depend>  <!-- ROS2 Cpp library -->
+  <depend>rclpy</depend> <!-- ROS2 Python library -->
+
+  <!-- exec dep -->
   <exec_depend>ros2launch</exec_depend> <!-- helps make sure that the ros2 launch command is available after building your package. It also ensures that all launch file formats are recognized-->
   <exec_depend>joint_state_publisher</exec_depend> <!-- joint state publisher, needed at runtime-->
   <exec_depend>joint_state_publisher_gui</exec_depend> <!-- joint state publisher-gui, needed at runtime-->
@@ -32,9 +39,11 @@
   <exec_depend>xacro</exec_depend> <!-- xacro for generating the urdf description of the robot at runtime-->
   <exec_depend>joy</exec_depend> <!-- joystick driver package; needed at runtime-->
 
+  <!-- test dep -->
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
+  <!-- export -->
   <export>
     <build_type>ament_cmake</build_type>
     

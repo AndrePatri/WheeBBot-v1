@@ -39,8 +39,7 @@
 
 - Hardware:
 
- - [ ] Wire a new cable for connecting to ODrive CAN bus
- - [ ] Improve encoder connections (including the new JST pins)
+ - [ ] Check if powering the RPI and the IMU stack reparately makes the connection better
 
 
 - Software:

@@ -17,9 +17,17 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
-find_package(ignition-gazebo6 REQUIRED)
+# Required packages:
+
 find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+
+find_package(ament_cmake_python REQUIRED)
+find_package(rclpy REQUIRED)
+
+find_package(std_msgs REQUIRED)
+
+find_package(ignition-gazebo6 REQUIRED)
 find_package(xacro REQUIRED)
 
 if(BUILD_TESTING)
@@ -33,6 +41,29 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+# Adding Cpp executables
+# add_executable(exec_chosen_name src/exec_name.py)
+
+# Link targets againsts libraries
+# ament_target_dependencies(target_name libraries_name)
+
+# Install Python packages (should be in ros_package_name/ros_package_name, where ros_package_name/ros_package_name must contain a __init__.py file)
+# ament_python_install_package(${PROJECT_NAME})
+
+# Installing directories
 install(DIRECTORY launch description config rviz src worlds DESTINATION share/${PROJECT_NAME}) # installing diretories so that ros2 can see them
+
+# Include directories:
+include_directories(include)
+
+# Installing targets:
+install(PROGRAMS
+  src/odrive_axes_USBconfig.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# install(TARGETS
+#   talker
+#   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
