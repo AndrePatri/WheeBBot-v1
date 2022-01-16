@@ -196,6 +196,8 @@ uint8_t dst_p_lin_acc_second_half[8];
 
 /////////////////////////////////////////// FUNCTION DEFINITIONS /////////////////////////////////////////////////////
 
+void (* resetFunc) (void) = 0; //declare a reset function @ address 0
+
 // Function to set report types
 void bno085SetReports(struct enabled_reports enbld_rep, struct IMU_report_dts reportDts) {
 
@@ -499,9 +501,9 @@ void sendGravOverCAN(uint8_t *dst_p_grav_first_half, uint8_t *dst_p_grav_second_
 /////////////////////////////////////////// SETUP FUNCTION //////////////////////////////////////////////////////////
 
 void setup(void) {
-
+  
   ////// Initializing BNO085 //////
-
+  
   if (!bno08x.begin_I2C())
   {
     while (1){delay(10);}

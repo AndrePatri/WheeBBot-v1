@@ -264,6 +264,8 @@ uint8_t dst_p_raw_acc_second_half[8];
 
 /////////////////////////////////////////// FUNCTION DEFINITIONS /////////////////////////////////////////////////////
 
+void (* resetFunc) (void) = 0; //declare a reset function @ address 0
+
 // Function to set report types
 void setReports(struct enabled_reports enbld_rep, struct IMU_report_dts reportDts) {
 

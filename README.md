@@ -44,10 +44,8 @@
 
 - Software:
 
- - [ ] Test modified firmware and check the data rate is fixed and consistent
- - [ ] Plot read data on the CAN bus (both can0 and can1) using the cantools plotting utility (ODrive .dbc shouldn't need any changes)
  - [ ] Find out why Ignition isn't able to visualize the ground meshes
- - [ ] Test the connection RViz2 - Ignition (make the joint state publisher work)
+ - [ ] Test the connection RViz2 - Ignition (make the joint state publisher works)
  - [ ] See if env hooks can be effectively used to export Ign and Gaz. environmental variables
  - [ ] See how to load properly a gui.config in ign world file
  - [ ] Perform the pitch equilibrium angle calibration using the IMU

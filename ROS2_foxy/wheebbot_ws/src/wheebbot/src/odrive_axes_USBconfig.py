@@ -79,8 +79,8 @@ my_odrive.can.config.baud_rate = 1000000
 #axis0
 my_odrive.axis0.config.can.node_id= 0
 my_odrive.axis0.config.can.encoder_rate_ms= 10
-my_odrive.axis0.config.can.heartbeat_rate_ms= 0
-my_odrive.axis0.config.can.idq_rate_ms= 10
+my_odrive.axis0.config.can.heartbeat_rate_ms= 10
+my_odrive.axis0.config.can.idq_rate_ms= 0
 my_odrive.axis0.config.startup_encoder_index_search= True
 my_odrive.axis0.config.startup_encoder_offset_calibration= True
 my_odrive.axis0.config.startup_motor_calibration=True
@@ -105,8 +105,8 @@ my_odrive.axis0.controller.config.vel_limit= 10
 #axis1
 my_odrive.axis1.config.can.node_id= 1
 my_odrive.axis1.config.can.encoder_rate_ms= 10
-my_odrive.axis1.config.can.heartbeat_rate_ms= 0
-my_odrive.axis1.config.can.idq_rate_ms= 10
+my_odrive.axis1.config.can.heartbeat_rate_ms= 10
+my_odrive.axis1.config.can.idq_rate_ms= 0
 my_odrive.axis1.config.startup_encoder_index_search= True
 my_odrive.axis1.config.startup_encoder_offset_calibration= True
 my_odrive.axis1.config.startup_motor_calibration=True
@@ -159,4 +159,5 @@ my_odrive.axis1.controller.config.vel_limit= 10
 # my_odrive.axis1.encoder.config.pre_calibrated= True
 
 my_odrive.save_configuration()
+time.sleep(2.0) # give time to save_configuration()
 my_odrive.reboot()
