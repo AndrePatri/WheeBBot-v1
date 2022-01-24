@@ -40,10 +40,9 @@
 - Hardware:
 
  - [ ] Check if powering the RPI and the IMU stack reparately makes the connection better
-
-
+ -
 - Software:
-
+ - [ ] Custom IMU and ODrive message for the state publishers
  - [ ] Find out why Ignition isn't able to visualize the ground meshes
  - [ ] Test the connection RViz2 - Ignition (make the joint state publisher works)
  - [ ] See if env hooks can be effectively used to export Ign and Gaz. environmental variables
