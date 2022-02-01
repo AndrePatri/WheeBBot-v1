@@ -1,18 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 project(wheebbot)
 
-set(CMAKE_CXX_STANDARD 14)
-
-# Default to C99
-if(NOT CMAKE_C_STANDARD)
-  set(CMAKE_C_STANDARD 99)
-endif()
-
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
 endif()
-
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
@@ -51,7 +43,7 @@ endif()
 # ament_python_install_package(${PROJECT_NAME})
 
 # Installing directories
-install(DIRECTORY launch description config rviz src worlds DESTINATION share/${PROJECT_NAME}) # installing diretories so that ros2 can see them
+install(DIRECTORY launch description config rviz src include scripts worlds DESTINATION share/${PROJECT_NAME}) # installing diretories so that ros2 can see them
 
 # Include directories:
 include_directories(include)

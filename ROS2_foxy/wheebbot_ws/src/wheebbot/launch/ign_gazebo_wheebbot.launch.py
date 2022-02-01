@@ -72,21 +72,21 @@ def generate_launch_description():
 
     use_sim_time_arg=DeclareLaunchArgument(
             'use_sim_time',
-            default_value='false',
+            default_value='true',
             description='Use simulation (Gazebo) clock if true')
 
-    rviz_arg = DeclareLaunchArgument(name='rvizconfig', default_value=str(default_rviz_config_path),
-                                     description='Absolute path to rviz config file')
+    rviz_arg = DeclareLaunchArgument(name = 'rvizconfig', default_value = str(default_rviz_config_path),
+                                     description = 'Absolute path to rviz config file')
 
-    ign_gazebo_node=ExecuteProcess(
-            cmd=command,
-            output='screen',
-            shell=True,
-            on_exit=Shutdown(),
-            additional_env=env,
+    ign_gazebo_node = ExecuteProcess(
+            cmd = command,
+            output = 'screen',
+            shell = True,
+            on_exit = Shutdown(),
+            additional_env = env,
     )
 
-    spawn_node = Node(package='ros_ign_gazebo', executable='create',
+    spawn_node = Node(package = 'ros_ign_gazebo', executable = 'create',
                 arguments=[
                     '-name', 'wheebbot',
                     '-topic', 'robot_description',
@@ -95,8 +95,8 @@ def generate_launch_description():
                 )
 
     ros_ign_bridge_node = Node(
-        package='ros_ign_bridge',
-        executable='parameter_bridge',
+        package = 'ros_ign_bridge',
+        executable = 'parameter_bridge',
         arguments=[
                 # Clock (IGN -> ROS2)
                 '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
@@ -106,14 +106,14 @@ def generate_launch_description():
         remappings=[
             ('/world/wheebbot_ign_world/model/wheebbot/joint_state', 'joint_states'),
         ],
-        output='screen'
+        output='screen',
     )
 
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         name='robot_state_publisher',
-        parameters=[{'use_sim_time': use_sim_time,'robot_description': robot_description}]
+        parameters=[{'use_sim_time': use_sim_time,'robot_description': robot_description}],
     )
 
     rviz_node = Node(
@@ -122,7 +122,7 @@ def generate_launch_description():
         name='rviz2',
         output='screen',
         arguments=['-d', LaunchConfiguration('rvizconfig')],
-        parameters=[{'use_sim_time': use_sim_time}]
+        parameters=[{'use_sim_time': use_sim_time}],
     )
 
     return LaunchDescription([

@@ -3,9 +3,7 @@
 
   <!-- joint state publisher (this way ignition gazebo publishes joint states to RViz) -->
   <gazebo>
-    <gazebo>
     <plugin filename="libignition-gazebo-joint-state-publisher-system.so" name="ignition::gazebo::systems::JointStatePublisher"/>
-    </gazebo>
   </gazebo>
 
   <!-- body -->

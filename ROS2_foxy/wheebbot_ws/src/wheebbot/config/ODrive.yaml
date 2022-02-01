@@ -34,7 +34,7 @@ odrv0_axes_USBconfig:
       encoder:
         config:
           cpr: 8192
-          mode: ENCODER_MODE_INCREMENTAL
+          mode: 0
           calib_range: 0.05
           pre_calibrated: False
           use_index: False
@@ -63,13 +63,13 @@ odrv0_axes_USBconfig:
           current_lim: 10.0
           pole_pairs: 7
           torque_constant: 0.03062963
-          calibration_current: 20.0 
+          calibration_current: 10.0 
           resistance_calib_max_voltage: 2.0 
           pre_calibrated: True
       encoder:
         config:
           cpr: 8192
-          mode: ENCODER_MODE_INCREMENTAL
+          mode: 0 # ENCODER_MODE_INCREMENTAL ->0
           calib_range: 0.05
           pre_calibrated: False
           use_index: False

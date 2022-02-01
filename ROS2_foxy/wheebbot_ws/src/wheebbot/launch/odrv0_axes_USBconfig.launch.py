@@ -13,7 +13,7 @@
 # limitations under the License.
 
 """
-Launch the USB ODrive configurator node (and load its parameters from the right YAML)
+Launch the USB ODrive configurator node (and load its parameters from the right YAML file)
 
 """
 
@@ -36,11 +36,15 @@ def generate_launch_description():
         )
         
     node=Node(
+        namespace='',
         package = 'wheebbot',
         name = 'odrv0_axes_USBconfig',
         executable = 'odrv0_axes_USBconfig.py',
         parameters = [config],
-        output='screen'
+        output={
+            "stdout": "screen",
+            "stderr": "screen",
+        },
     )
 
     ld.add_action(node)
