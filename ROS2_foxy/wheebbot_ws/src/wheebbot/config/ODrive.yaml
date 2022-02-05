@@ -1,5 +1,5 @@
 # ODrive USB config node
-odrv0_axes_USBconfig:
+odrv0_axes_USBconfigurator:
   ros__parameters:
     config:
       brake_resistance: 0.0

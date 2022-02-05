@@ -38,8 +38,8 @@ def generate_launch_description():
     node=Node(
         namespace='',
         package = 'wheebbot',
-        name = 'odrv0_axes_USBconfig',
-        executable = 'odrv0_axes_USBconfig.py',
+        name = 'odrv0_axes_USBconfigurator',
+        executable = 'odrv0_axes_USBconfigurator.py',
         parameters = [config],
         output={
             "stdout": "screen",

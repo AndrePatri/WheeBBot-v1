@@ -50,7 +50,7 @@ include_directories(include)
 
 # Installing targets:
 install(PROGRAMS
-  src/odrv0_axes_USBconfig.py
+  src/odrv0_axes_USBconfigurator.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
