@@ -96,26 +96,25 @@ def generate_launch_description():
         # See ros-simulation/gazebo_ros_pkgs#1086. Simplification of logic
         # would be possible pending ros2/launch#290.
         ExecuteProcess(
-            cmd=cmd,
-            output='screen',
-            additional_env=env,
-            shell=True,
-            prefix=prefix,
-            on_exit=Shutdown(),
-            condition=IfCondition(LaunchConfiguration('gui_required')),
+            cmd =  cmd,
+            output = 'screen',
+            additional_env = env,
+            shell = True,
+            prefix = prefix,
+            on_exit = Shutdown(),
+            condition = IfCondition(LaunchConfiguration('gui_required')),
         ),
 
         # Execute node with default on_exit if the node is not required
         ExecuteProcess(
-            cmd=cmd,
-            output='screen',
-            additional_env=env,
-            shell=True,
-            prefix=prefix,
-            condition=UnlessCondition(LaunchConfiguration('gui_required')),
+            cmd = cmd,
+            output = 'screen',
+            additional_env = env,
+            shell = True,
+            prefix = prefix,
+            condition = UnlessCondition(LaunchConfiguration('gui_required')),
         ),
     ])
-
 
 # Add boolean commands if true
 def _boolean_command(arg):

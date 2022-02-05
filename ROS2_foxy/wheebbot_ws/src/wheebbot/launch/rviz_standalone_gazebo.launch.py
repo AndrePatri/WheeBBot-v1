@@ -1,7 +1,7 @@
 """
 Launches RViz2 and the robot_state_publisher nodes. 
 (an external node publishing joint state is necessary to be able to compute the TFs).
-By default, the used model for the robot_description is the WheeBBot.
+By default, the used model for the robot_description is the WheeBBot (gazebo URDF).
 
 """
 

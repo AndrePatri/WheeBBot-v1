@@ -86,7 +86,7 @@ def generate_launch_description():
             additional_env = env,
     )
 
-    spawn_node = Node(package = 'ros_ign_gazebo', executable = 'create',
+    spawn_entity_node = Node(package = 'ros_ign_gazebo', executable = 'create',
                 arguments=[
                     '-name', 'wheebbot',
                     '-topic', 'robot_description',
@@ -132,28 +132,8 @@ def generate_launch_description():
         use_sim_time_arg,
         rviz_arg,
         ign_gazebo_node,
-        spawn_node,
+        spawn_entity_node,
         ros_ign_bridge_node,
         robot_state_publisher_node,
         rviz_node,
     ])
-
-# Add boolean commands if true
-def _boolean_command(arg):
-    cmd = ['"--', arg, '" if "true" == "', LaunchConfiguration(arg), '" else ""']
-    py_cmd = PythonExpression(cmd)
-    return py_cmd
-
-
-# Add string commands if not empty
-def _arg_command(arg):
-    cmd = ['"--', arg, '" if "" != "', LaunchConfiguration(arg), '" else ""']
-    py_cmd = PythonExpression(cmd)
-    return py_cmd
-
-
-# Add gazebo_ros plugins if true
-def _plugin_command(arg):
-    cmd = ['"-s libgazebo_ros_', arg, '.so" if "true" == "', LaunchConfiguration(arg), '" else ""']
-    py_cmd = PythonExpression(cmd)
-    return py_cmd

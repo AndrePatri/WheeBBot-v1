@@ -33,6 +33,7 @@ def generate_launch_description():
                                        value_type=str)
     package_share_path = get_package_share_path('wheebbot')
     default_model_path = package_share_path/'description/urdf/wheebbot.urdf.xacro'
+    default_rviz_config_path = package_share_path/'rviz/wheebbot.rviz'
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
 
@@ -58,6 +59,8 @@ def generate_launch_description():
             default_value='false',
             description='Use simulation (Gazebo) clock if true')
 
+    rviz_arg = DeclareLaunchArgument(name = 'rvizconfig', default_value = str(default_rviz_config_path),
+                                     description = 'Absolute path to rviz config file')
 
     gzclient_node=IncludeLaunchDescription(
             PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/gzserver.launch.py']),
@@ -84,11 +87,19 @@ def generate_launch_description():
         parameters=[{'use_sim_time': use_sim_time,'robot_description': robot_description}]
     )
 
-    spawn_entity_node = Node(package='gazebo_ros', node_executable='spawn_entity.py',
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', LaunchConfiguration('rvizconfig')],
+        parameters=[{'use_sim_time': use_sim_time}]
+    )
+
+    spawn_entity_node = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-entity', 'wheebbot', '-topic', 'robot_description'],
                         output='screen')
 
-    
     return LaunchDescription([
         use_sim_time_arg,
         model_arg,
@@ -99,8 +110,10 @@ def generate_launch_description():
         world_arg,
         is_paused_arg,
         physics_type_arg,
+        rviz_arg,
         gzclient_node,
         gzserver_node,
         robot_state_publisher_node,
         spawn_entity_node,
+        rviz_node,
     ])

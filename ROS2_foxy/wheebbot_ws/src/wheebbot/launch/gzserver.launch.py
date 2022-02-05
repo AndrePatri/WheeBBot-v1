@@ -27,7 +27,6 @@ from launch.substitutions import PythonExpression
 
 from scripts import GazeboRosPaths
 
-
 def generate_launch_description():
     cmd = [
         'gzserver',
@@ -182,26 +181,25 @@ def generate_launch_description():
         # See ros-simulation/gazebo_ros_pkgs#1086. Simplification of logic
         # would be possible pending ros2/launch#290.
         ExecuteProcess(
-            cmd=cmd,
-            output='screen',
-            additional_env=env,
-            shell=True,
-            prefix=prefix,
-            on_exit=Shutdown(),
-            condition=IfCondition(LaunchConfiguration('server_required')),
+            cmd = cmd,
+            output = 'screen',
+            additional_env = env,
+            shell = True,
+            prefix = prefix,
+            on_exit = Shutdown(),
+            condition = IfCondition(LaunchConfiguration('server_required')),
         ),
 
         # Execute node with default on_exit if the node is not required
         ExecuteProcess(
-            cmd=cmd,
-            output='screen',
-            additional_env=env,
-            shell=True,
-            prefix=prefix,
-            condition=UnlessCondition(LaunchConfiguration('server_required')),
+            cmd = cmd,
+            output = 'screen',
+            additional_env = env,
+            shell = True,
+            prefix = prefix,
+            condition = UnlessCondition(LaunchConfiguration('server_required')),
         ),
     ])
-
 
 # Add boolean commands if true
 def _boolean_command(arg):
@@ -209,13 +207,11 @@ def _boolean_command(arg):
     py_cmd = PythonExpression(cmd)
     return py_cmd
 
-
 # Add string commands if not empty
 def _arg_command(arg):
     cmd = ['"--', arg, '" if "" != "', LaunchConfiguration(arg), '" else ""']
     py_cmd = PythonExpression(cmd)
     return py_cmd
-
 
 # Add gazebo_ros plugins if true
 def _plugin_command(arg):

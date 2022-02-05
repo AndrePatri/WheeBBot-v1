@@ -35,13 +35,13 @@ def generate_launch_description():
         'ODrive.yaml'
         )
         
-    node=Node(
-        namespace='',
+    node  =Node(
+        namespace = '',
         package = 'wheebbot',
         name = 'odrv0_axes_USBconfigurator',
         executable = 'odrv0_axes_USBconfigurator.py',
         parameters = [config],
-        output={
+        output = {
             "stdout": "screen",
             "stderr": "screen",
         },
