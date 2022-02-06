@@ -39,18 +39,17 @@
 
 - Hardware:
 
- - [ ] Check if powering the RPI and the IMU stack reparately makes the connection better
- -
+ - [ ] 
+
 - Software:
+
  - [ ] Custom IMU and ODrive message for the state publishers
  - [ ] Find out why Ignition isn't able to visualize the ground meshes
- - [ ] Test the connection RViz2 - Ignition (make the joint state publisher works)
  - [ ] See if env hooks can be effectively used to export Ign and Gaz. environmental variables
  - [ ] See how to load properly a gui.config in ign world file
- - [ ] Perform the pitch equilibrium angle calibration using the IMU
+ - [ ] Perform inertial parameters identification (e.g. using Pinocchio)
  - [ ] Document on Pinocchio rigid body library  
- - [ ] Outline a node structure for the ROS nodes, etc...
- - [ ] GUI for interacting with the robot (using RQt?)
+ - [ ] GUI for interacting with the robot (using QML)
  - [ ] Write a sample controller and test balancing/navigation
  
  

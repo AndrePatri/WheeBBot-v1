@@ -20,9 +20,9 @@ odrv_axes_USBconfigurator:
         startup_homing: False
         can:
           node_id: 0
-          encoder_rate_ms: 100.0
-          heartbeat_rate_ms: 100.0
-          idq_rate_ms: 0.0
+          encoder_rate_ms: 1.0
+          heartbeat_rate_ms: 1.0
+          idq_rate_ms: 1.0
       motor:
           config:
             current_lim: 10.0
@@ -55,9 +55,9 @@ odrv_axes_USBconfigurator:
         startup_homing: False
         can:
           node_id: 1
-          encoder_rate_ms: 100.0
-          heartbeat_rate_ms: 100.0
-          idq_rate_ms: 0.0
+          encoder_rate_ms: 1.0
+          heartbeat_rate_ms: 1.0
+          idq_rate_ms: 1.0
       motor:
         config:
           current_lim: 10.0
