@@ -30,14 +30,14 @@ def generate_launch_description():
     ld = LaunchDescription()
 
     config = os.path.join(
-        get_package_share_directory('wheebbot'),
+        get_package_share_directory('wheebbot_rpi'),
         'config',
         'ODrive.yaml'
         )
         
     node  =Node(
         namespace = '',
-        package = 'wheebbot',
+        package = 'wheebbot_rpi',
         name = 'odrv_axes_USBconfigurator',
         executable = 'odrv_axes_USBconfigurator.py',
         parameters = [config],
