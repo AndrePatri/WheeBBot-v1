@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(wheebbot)
+project(wheebbot_rpi)
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
@@ -18,9 +18,6 @@ find_package(ament_cmake_python REQUIRED)
 find_package(rclpy REQUIRED)
 
 find_package(std_msgs REQUIRED)
-
-find_package(ignition-gazebo6 REQUIRED)
-find_package(xacro REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -43,7 +40,7 @@ endif()
 # ament_python_install_package(${PROJECT_NAME})
 
 # Installing directories
-install(DIRECTORY launch description config rviz src include scripts worlds DESTINATION share/${PROJECT_NAME}) # installing diretories so that ros2 can see them
+install(DIRECTORY launch config src include scripts DESTINATION share/${PROJECT_NAME}) # installing diretories so that ros2 can see them
 
 # Include directories:
 include_directories(include)
